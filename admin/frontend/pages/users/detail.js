@@ -328,7 +328,7 @@ class UserDetail extends PageComponent {
           classNameButton='button is-link'
           onConfirm={() => this.resetOnClick()}
         >
-          Reset password
+          Restablecer contraseña
         </ConfirmButton>
       </div>
     }
@@ -337,13 +337,13 @@ class UserDetail extends PageComponent {
     if (currentUser.uuid !== user.uuid) {
       deleteButton = <div className='control'>
         <ConfirmButton
-          title='Delete User'
+          title='Eliminar usuario'
           className='button is-danger'
           classNameButton='button is-danger'
           onConfirm={() => this.deleteOnClick()}
           onSuccess={() => this.deleteSuccessHandler()}
         >
-          Delete
+          Eliminar
         </ConfirmButton>
       </div>
     }
@@ -391,7 +391,7 @@ class UserDetail extends PageComponent {
                     <div className='card'>
                       <header className='card-header'>
                         <p className='card-header-title'>
-                          Organizations
+                          Organizaciones
                         </p>
                         <div>
                           {this.getSavingOrgMessage()}
@@ -402,6 +402,8 @@ class UserDetail extends PageComponent {
                           assignedList={this.state.selectedOrgs}
                           availableList={availableOrgsList}
                           dataFormatter={(item) => { return item.name || 'N/A' }}
+                          availableTitle='Disponibles'
+                          assignedTitle='Asignadas'
                           availableClickHandler={this.availableOrgOnClick.bind(this)}
                           assignedClickHandler={this.assignedOrgOnClick.bind(this)}
                         />
@@ -414,7 +416,7 @@ class UserDetail extends PageComponent {
                     <div className='card'>
                       <header className='card-header'>
                         <p className='card-header-title'>
-                          Groups
+                          Grupos
                         </p>
                         <div>
                           {this.getSavingGroupMessage()}
@@ -425,6 +427,8 @@ class UserDetail extends PageComponent {
                           assignedList={this.state.selectedGroups}
                           availableList={availableGroupsList}
                           dataFormatter={(item) => { return item.name || 'N/A' }}
+                          availableTitle='Disponibles'
+                          assignedTitle='Asignados'
                           availableClickHandler={this.availableGroupOnClick.bind(this)}
                           assignedClickHandler={this.assignedGroupOnClick.bind(this)}
                         />
@@ -444,10 +448,10 @@ class UserDetail extends PageComponent {
 UserDetail.config({
   name: 'user-details',
   path: '/manage/users/:uuid',
-  title: '<%= user.name %> | User details',
+  title: '<%= user.name %> | Detalles de usuario',
   breadcrumbs: [
-    {label: 'Dashboard', path: '/'},
-    {label: 'Users', path: '/manage/users'},
+    {label: 'Inicio', path: '/'},
+    {label: 'Usuarios', path: '/manage/users'},
     {label: '<%= user.name %>'}
   ],
   exact: true,

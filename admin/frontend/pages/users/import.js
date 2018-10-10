@@ -40,7 +40,7 @@ class ImportUsers extends PageComponent {
             <h1
               className='is-size-3 is-padding-top-small is-padding-bottom-small'
             >
-              Load users
+              Importar usuarios
             </h1>
             <div className='card'>
               <div className='card-content'>
@@ -51,15 +51,14 @@ class ImportUsers extends PageComponent {
                       formData={this.state.formData}
                       onChange={(data) => { this.changeHandler(data) }}
                       onSubmit={async (data) => { await this.submitHandler(data) }}
-                      defaultSuccessMessage='Users imported correctly'
-                      buttonLabel='Import'
+                      defaultSuccessMessage='Se han importado los usuarios correctamente'
+                      buttonLabel='Importar'
                     />
                   </div>
                 </div>
-                <h4>The <strong>.csv</strong> file should have the same format
-                  as the example below:
+                <h4>El archivo <strong>.csv</strong> debe tener el mismo formato del ejemplo de abajo:
                 </h4>
-                <pre style={{ marginTore: '1em' }}>
+                <pre style={{ marginTop: '1em' }}>
                   "name","screenName","email","password"<br />
                   "Juan Perez","Juan","juan@coporation.com","password"
                 </pre>
@@ -76,11 +75,11 @@ ImportUsers.config({
   name: 'import-users',
   path: '/import/users',
   icon: 'user',
-  title: 'Import Users',
+  title: 'Usuarios',
   breadcrumbs: [
-    {label: 'Dashboard', path: '/'},
-    {label: 'Import'},
-    {label: 'Users'}
+    {label: 'Inicio', path: '/'},
+    {label: 'Importar'},
+    {label: 'Usuarios'}
   ],
   exact: true,
   validate: loggedIn

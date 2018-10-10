@@ -8,7 +8,6 @@ import ErrorPage from '~base/components/error-page'
 import Loader from '~base/components/spinner'
 
 import Sidebar from '~components/sidebar'
-import Footer from '~components/footer'
 import AdminNavBar from '~components/admin-navbar'
 
 class AdminLayout extends Component {
@@ -103,7 +102,6 @@ class AdminLayout extends Component {
             <section className='c-flex-1 is-flex main-section'>
               {this.props.children}
             </section>
-            <Footer />
           </div>
         </div>
       </div>)

@@ -11,7 +11,7 @@ class UserList extends ListPageComponent {
   async onFirstPageEnter () {
     const organizations = await this.loadOrgs()
 
-    return {organizations}
+    return { organizations }
   }
 
   async loadOrgs () {
@@ -35,24 +35,23 @@ class UserList extends ListPageComponent {
 
   getFilters () {
     const data = {
-      schema: {
-        type: 'object',
-        required: [],
-        properties: {
-          screenName: {type: 'text', title: 'Por nombre'},
-          email: {type: 'text', title: 'Por email'},
-          organization: {type: 'text', title: 'Por organización', values: []}
-        }
+      name: {
+        label: 'Por nombre',
+        widget: 'TextWidget'
       },
-      uiSchema: {
-        screenName: {'ui:widget': 'SearchFilter'},
-        email: {'ui:widget': 'SearchFilter'},
-        organization: {'ui:widget': 'SelectSearchFilter'}
+      email: {
+        label: 'Por email',
+        widget: 'TextWidget'
+      },
+      organization: {
+        label: 'Por organización',
+        widget: 'SelectWidget',
+        options: []
       }
     }
 
     if (this.state.organizations) {
-      data.schema.properties.organization.values = this.state.organizations.map(item => { return {uuid: item.uuid, name: item.name} })
+      this.state.organizations.map(({ uuid, name }) => ({ value: uuid, label: name }))
     }
 
     return data
@@ -65,13 +64,7 @@ class UserList extends ListPageComponent {
   getColumns () {
     return [
       {
-        'title': 'Screen name',
-        'property': 'screenName',
-        'default': 'N/A',
-        'sortable': true
-      },
-      {
-        'title': 'Name',
+        'title': 'Nombre',
         'property': 'name',
         'default': 'N/A',
         'sortable': true
@@ -83,7 +76,7 @@ class UserList extends ListPageComponent {
         'sortable': true
       },
       {
-        'title': 'Actions',
+        'title': 'Acciones',
         formatter: (row) => {
           return (
             <div className='field is-grouped'>
@@ -103,14 +96,14 @@ class UserList extends ListPageComponent {
 UserList.config({
   name: 'user-list',
   path: '/manage/users',
-  title: 'Users',
+  title: 'Usuarios',
   icon: 'user',
   exact: true,
   validate: loggedIn,
 
   headerLayout: 'create',
   createComponent: CreateUser,
-  createComponentLabel: 'New User',
+  createComponentLabel: 'Nuevo usuario',
 
   apiUrl: '/admin/users'
 })

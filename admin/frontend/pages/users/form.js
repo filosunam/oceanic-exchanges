@@ -9,7 +9,7 @@ class UserForm extends Component {
 
     const schema = {
       'name': {
-        'label': 'Name',
+        'label': 'Nombre',
         'default': '',
         'id': 'name',
         'name': 'name',
@@ -19,24 +19,18 @@ class UserForm extends Component {
       'email': {
         'widget': 'EmailWidget',
         'name': 'email',
-        'label': 'Email',
-        'required': true
-      },
-      'screenName': {
-        'widget': 'TextWidget',
-        'name': 'screenname',
-        'label': 'Screen name',
+        'label': 'Correo electrónico',
         'required': true
       },
       'isAdmin': {
         'widget': 'CheckboxWidget',
         'name': 'isAdmin',
-        'label': 'Is Admin?'
+        'label': '¿Es administrador?'
       },
       'role': {
         'widget': 'SelectWidget',
         'name': 'role',
-        'label': 'Role',
+        'label': 'Rol',
         'allowEmpty': true,
         'options': []
       }
@@ -63,7 +57,7 @@ class UserForm extends Component {
   changeHandler (formData) {
     let errors = {}
     if (formData.password && formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = 'Passwords don\'t match'
+      errors.confirmPassword = 'Las contraseñas no coinciden'
     }
 
     this.setState({
@@ -94,34 +88,34 @@ class UserForm extends Component {
 
     let successMessage, formData
 
-    let buttonLabel = 'Update'
+    let buttonLabel = 'Actualizar'
     if (this.props.mode === 'invite') {
       schema.sendInvite = {
         type: 'Boolean',
         widget: 'HiddenWidget',
         default: true
       }
-      successMessage = 'User was invited correctly'
-      buttonLabel = 'Invite'
+      successMessage = 'El usuario fue invitado correctamente'
+      buttonLabel = 'Invitar'
     } else if (this.props.mode === 'password') {
       schema.password = {
         type: 'String',
         widget: 'PasswordWidget',
-        label: 'Password',
+        label: 'Contraseña',
         required: true
       }
 
       schema.confirmPassword = {
         type: 'String',
         widget: 'PasswordWidget',
-        label: 'Confirm password',
+        label: 'Confirmar contraseña',
         required: true
       }
 
-      buttonLabel = 'Create'
+      buttonLabel = 'Crear'
     } else if (this.props.mode === 'update') {
       formData = this.state.formData
-      successMessage = 'User was updated correctly'
+      successMessage = 'El usuario fue actualizado correctamente'
     }
 
     return (

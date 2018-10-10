@@ -18,6 +18,7 @@ import RequestLogs from '../pages/developer-tools/request-logs'
 import FormBuilder from '../pages/developer-tools/form-builder'
 
 // #Import
+import Publications from '../pages/publications/list'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -51,20 +52,21 @@ class Sidebar extends Component {
     return [
       Dashboard.asSidebarItem(),
       {
-        title: 'Manage Your Team',
+        title: 'Administrar equipo',
         icon: 'users',
         to: '/manage',
         open: false,
         dropdown: [
           Users.asSidebarItem(),
-          Organizations.asSidebarItem(),
-          Roles.asSidebarItem(),
-          Groups.asSidebarItem()
+          // Organizations.asSidebarItem(),
+          // Roles.asSidebarItem(),
+          // Groups.asSidebarItem()
         ]
       },
+      Publications.asSidebarItem(),
       // #Modules
       {
-        title: 'Load Data',
+        title: 'Importar',
         icon: 'cloud-upload',
         to: '/import',
         open: false,
@@ -72,31 +74,22 @@ class Sidebar extends Component {
           UsersImport.asSidebarItem()
         ]
       }, {
-        title: 'Developer Tools',
-        icon: 'github',
-        to: '/devtools',
-        open: false,
-        dropdown: [
-          RequestLogs.asSidebarItem(),
-          AppConfig.asSidebarItem(),
-          FormBuilder.asSidebarItem()
-        ]
-      }, {
-        title: 'Restore data',
+      //   title: 'Desarrolladores',
+      //   icon: 'github',
+      //   to: '/devtools',
+      //   open: false,
+      //   dropdown: [
+      //     RequestLogs.asSidebarItem(),
+      //     AppConfig.asSidebarItem(),
+      //     FormBuilder.asSidebarItem()
+      //   ]
+      // }, {
+        title: 'Restaurar',
         icon: 'trash-o',
         to: '/restore',
         open: false,
         dropdown: [
           DeletedUsers.asSidebarItem()// #Restore
-        ]
-      },
-      {
-        title: 'UI Components',
-        icon: 'object-group',
-        to: '/ui-components',
-        open: false,
-        dropdown: [
-          Buttons.asSidebarItem()
         ]
       }
     ]
@@ -131,10 +124,6 @@ class Sidebar extends Component {
     const menuClass = classNames('menu', {
       'menu-collapsed': this.state.collapsed
     })
-    const imgClass = classNames('img-logo', {
-      'icon-img': this.state.collapsed,
-      'icon-img-text': !this.state.collapsed
-    })
 
     const sidebarClass = classNames('is-flex is-flex-column', {
       'sidebar-container': !this.state.collapsed
@@ -144,7 +133,6 @@ class Sidebar extends Component {
       'fa-expand': this.state.collapsed,
       'fa-compress': !this.state.collapsed
     })
-    let fileImg = (this.state.collapsed) ? 'icono-white.svg' : 'horizontal-white.svg'
 
     if (!this.props.burgerState) {
       divClass = divClass + ' is-hidden-touch'
@@ -152,10 +140,14 @@ class Sidebar extends Component {
 
     return (<div className={sidebarClass}><div className={divClass}>
       <aside className={menuClass}>
-        <Link to='/' className='navbar-item c-flex-1 is-dark is-paddingless'>
-          <Image className={imgClass} src={'/public/img/' + fileImg} width='200' height='100' alt='Logotipo' />
-        </Link>
-        <a onClick={() => this.handleCollapse()} className='button is-primary collapse-btn'>
+        <div className='sidebar-brand'>
+          <h1 className='title is-5'>
+            <Link to='/'>
+              Intercambios Oceánicos
+            </Link>
+          </h1>
+        </div>
+        <a onClick={() => this.handleCollapse()} className='button is-primary collapse-btn is-hidden'>
           <span className='icon is-small'>
             <i className={collapseBtn} />
           </span>

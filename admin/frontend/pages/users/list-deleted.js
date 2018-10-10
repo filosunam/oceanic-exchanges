@@ -31,7 +31,7 @@ class Header extends Component {
 
     return <header className='card-header'>
       <p className='card-header-title'>
-        Restore users
+        Restaurar usuarios
       </p>
       <div className='card-header-select'>
         <button
@@ -39,7 +39,7 @@ class Header extends Component {
           onClick={() => this.restoreMultiple()}
           disabled={selectedRows.length === 0}
         >
-          Restore multiple users
+          Restaurar múltiples usuarios
         </button>
       </div>
     </header>
@@ -71,24 +71,23 @@ class UserDeletedList extends ListPageComponent {
 
   getFilters () {
     const data = {
-      schema: {
-        type: 'object',
-        required: [],
-        properties: {
-          screenName: {type: 'text', title: 'Por nombre'},
-          email: {type: 'text', title: 'Por email'},
-          organization: {type: 'text', title: 'Por organización', values: []}
-        }
+      name: {
+        label: 'Por nombre',
+        widget: 'TextWidget'
       },
-      uiSchema: {
-        screenName: {'ui:widget': 'SearchFilter'},
-        email: {'ui:widget': 'SearchFilter'},
-        organization: {'ui:widget': 'SelectSearchFilter'}
+      email: {
+        label: 'Por email',
+        widget: 'TextWidget'
+      },
+      organization: {
+        label: 'Por organización',
+        widget: 'SelectWidget',
+        options: []
       }
     }
 
     if (this.state.organizations) {
-      data.schema.properties.organization.values = this.state.organizations.map(item => { return {uuid: item.uuid, name: item.name} })
+      this.state.organizations.map(({ uuid, name }) => ({ value: uuid, label: name }))
     }
 
     return data
@@ -97,7 +96,7 @@ class UserDeletedList extends ListPageComponent {
   getColumns () {
     return [
       {
-        'title': 'Name',
+        'title': 'Nombre',
         'property': 'name',
         'default': 'N/A',
         'sortable': true
@@ -109,11 +108,11 @@ class UserDeletedList extends ListPageComponent {
         'sortable': true
       },
       {
-        'title': 'Actions',
+        'title': 'Acciones',
         formatter: (row) => {
           return (
             <button className='button' onClick={e => { this.restoreOnClick(row.uuid) }}>
-              Restore
+              Restaurar
             </button>
           )
         }
@@ -126,7 +125,7 @@ UserDeletedList.config({
   // Basic values
   name: 'user-deleted-list',
   path: '/manage/users/deleted',
-  title: 'Deactivated users',
+  title: 'Restaurar usuarios',
   icon: 'user',
   exact: true,
   validate: loggedIn,

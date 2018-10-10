@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 @import 'colors';
 @import 'buttons';
-@import url('https://fonts.googleapis.com/css?family=Muli');
 @import '~bulma';
 @import '~bulma-tooltip';
-@import '~font-awesome/css/font-awesome.css';
+// @import '~font-awesome/css/font-awesome.css';
+@import '~line-awesome/dist/css/line-awesome-font-awesome.min.css';
 @import 'base';
 @import 'navbar';
 @import 'sidebar';
 @import 'ui-components-pages';
 @import 'dashboard';
+@import 'custom/index'

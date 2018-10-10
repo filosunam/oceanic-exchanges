@@ -54,11 +54,11 @@ class CreateUser extends Component {
   render () {
     let mode, title
     if (env.EMAIL_SEND) {
-      title = 'Invite user'
+      title = 'Invitar usuario'
       mode = 'invite'
     } else {
       mode = 'password'
-      title = 'Create user'
+      title = 'Crear usuario'
     }
 
     let modalContent = <UserForm

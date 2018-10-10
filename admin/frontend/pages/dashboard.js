@@ -8,6 +8,8 @@ import Link from '~base/router/link'
 
 import {loggedIn} from '~base/middlewares/'
 
+moment.locale('es')
+
 class Dashboard extends PageComponent {
   constructor (props) {
     super(props)
@@ -54,11 +56,11 @@ class Dashboard extends PageComponent {
       <div className='Dashboard'>
         <div className='columns'>
           <div className='column'>
-            <h1 className='Dashboard-title'>Your organization</h1>
-            <h2 className='Dashboard-subtitle'>Review the state of your organization</h2>
+            <h1 className='Dashboard-title'>Intercambios Oceánicos</h1>
+            <h2 className='Dashboard-subtitle'>Este es el resumen de tu proyecto</h2>
           </div>
           <div className='column Dashboard-welcome'>
-            <p>Welcome!</p>
+            <p>Bienvenido</p>
             <p>{todayIs}</p>
           </div>
         </div>
@@ -68,7 +70,7 @@ class Dashboard extends PageComponent {
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
                   <p className='title'>{orgsCount}</p>
-                  <p className='subtitle'>Organizations</p>
+                  <p className='subtitle'>Organizaciones</p>
                 </article>
               </div>
             </div>
@@ -78,7 +80,7 @@ class Dashboard extends PageComponent {
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
                   <p className='title'>{usersCount}</p>
-                  <p className='subtitle'>Users</p>
+                  <p className='subtitle'>Usuarios</p>
                 </article>
               </div>
             </div>
@@ -98,7 +100,7 @@ class Dashboard extends PageComponent {
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
                   <p className='title'>{groupsCount}</p>
-                  <p className='subtitle'>Groups</p>
+                  <p className='subtitle'>Grupos</p>
                 </article>
               </div>
             </div>
@@ -110,9 +112,9 @@ class Dashboard extends PageComponent {
               <table className='table is-fullwidth'>
                 <thead>
                   <tr>
-                    <th>Quick actions</th>
+                    <th>Acciones rápidas</th>
                     <th>
-                      <span>View</span>
+                      <span>Ver</span>
                     </th>
                   </tr>
                 </thead>
@@ -121,7 +123,7 @@ class Dashboard extends PageComponent {
                     <td>
                       <div className='icon-list'>
                         <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-sitemap' /></a>
-                        <span className='icon-list-right'>Organizations</span>
+                        <span className='icon-list-right'>Organizaciones</span>
                       </div>
                     </td>
                     <td className='quickActions-list'>
@@ -136,7 +138,7 @@ class Dashboard extends PageComponent {
                     <td>
                       <div className='icon-list'>
                         <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-user' /></a>
-                        <span className='icon-list-right'>Users</span>
+                        <span className='icon-list-right'>Usuarios</span>
                       </div>
                     </td>
                     <td className='quickActions-list'>
@@ -166,7 +168,7 @@ class Dashboard extends PageComponent {
                     <td>
                       <div className='icon-list'>
                         <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-users' /></a>
-                        <span className='icon-list-right'>Groups</span>
+                        <span className='icon-list-right'>Grupos</span>
                       </div>
                     </td>
                     <td className='quickActions-list'>
@@ -190,7 +192,7 @@ class Dashboard extends PageComponent {
 Dashboard.config({
   path: '/',
   exact: true,
-  title: 'Dashboard',
+  title: 'Inicio',
   icon: 'dashboard',
   validate: loggedIn
 })

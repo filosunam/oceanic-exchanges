@@ -1,0 +1,73 @@
+.multifilter {
+  .field.has-addons {
+    margin-bottom: 0;
+  }
+
+  .dropdown-item {
+    color: #0C2938 !important;
+  }
+
+  .dropdown-item:first-child {
+    border-bottom: 0;
+  }
+
+  .dropdown-item + .dropdown-item {
+    border-top: 1px solid #DADEE0;
+  }
+
+  .dropdown-item.is-active {
+    background-color: #DADEE0;
+  }
+
+  .marble-form {
+    label { display: none !important; }
+  }
+
+  .tags + .tags {
+    margin-left: 1rem;
+  }
+
+  .tags {
+    margin-top: 1rem;
+    margin-bottom: 0 !important;
+  }
+
+  .tag {
+    border: 0;
+    height: 1.6rem !important;
+
+    .fa {
+      font-weight: light !important;
+      font-size: 14px/1 !important;
+    }
+  }
+
+  a.tag {
+    background-color: #DADEE0 !important;
+  }
+
+  a.tag:hover {
+    color: #333 !important;
+    text-decoration: none;
+  }
+
+  .field .control .button {
+    align-items: baseline;
+    background-color: #DADEE0;
+    border-color: #066391;
+
+    span {
+      color: #066391 !important;
+    }
+  }
+
+  .field .control .icon {
+    align-items: center;
+    height: auto !important;
+  }
+
+  .field select,
+  .field input {
+    border-color: #817E7E !important;
+  }
+}

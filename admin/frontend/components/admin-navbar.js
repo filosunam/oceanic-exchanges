@@ -13,7 +13,7 @@ class NavBar extends Component {
     this.state = {
       mobileMenu: 'close',
       profileDropdown: 'is-hidden',
-      dropCaret: 'fa fa-chevron-down',
+      dropCaret: 'fa fa-angle-down',
       redirect: false,
       burger: false
     }
@@ -36,7 +36,7 @@ class NavBar extends Component {
 
   handleClickOutside (event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-chevron-down' })
+      this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-angle-down' })
     }
   }
 
@@ -61,9 +61,9 @@ class NavBar extends Component {
   toggleBtnClass () {
     if (this.wrapperRef) {
       if (this.state.profileDropdown === 'is-hidden') {
-        this.setState({ 'profileDropdown': 'is-active', 'dropCaret': 'fa fa-chevron-up' })
+        this.setState({ 'profileDropdown': 'is-active', 'dropCaret': 'fa fa-angle-up' })
       } else {
-        this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-chevron-down' })
+        this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-angle-down' })
       }
     }
   }
@@ -74,43 +74,37 @@ class NavBar extends Component {
 
   render () {
     var navButtons
-    let avatar
     let username
     if (this.props.loggedIn) {
-      avatar = '/public/img/avt-default.jpg'
-
       if (tree.get('user')) {
         username = tree.get('user').screenName
       }
 
       navButtons = (<div className='dropdown-content'>
         <Link className='dropdown-item' onClick={() => this.toggleBtnClass()} to='/profile'>
-          <i className='fa fa-user' />Profile
+          <i className='fa fa-user' />Perfil
         </Link>
         <a className='dropdown-item' onClick={() => this.handleLogout()}>
-          <i className='fa fa-power-off' />Logout
+          <i className='fa fa-power-off' />Cerrar sesión
         </a>
       </div>)
     }
 
     return (<nav className='c-topbar navbar c-fixed' ref={this.setWrapperRef}>
-      <div className='navbar-brand navbar-logo'>
-        <div className='is-flex is-align-center navbar-item is-hidden-desktop is-pulled-right-by-margin'>
-          <Image className='is-rounded' src={avatar} width='30' height='35' alt='Avatar' />
-        </div>
-        <div className='dropdown is-active is-right is-hidden-desktop is-pulled-right'>
+      <div className='navbar-end'>
+        <div className='dropdown is-active is-right is-hidden-desktop'>
           <div className='dropdown-trigger is-flex'>
-            <a href='javascript:undefined' className='navbar-item' onClick={() => this.toggleBtnClass()}>
+            <a className='navbar-item' onClick={() => this.toggleBtnClass()}>
               <span className='icon has-text-white'>
                 <i className={this.state.dropCaret} />
               </span>
             </a>
           </div>
           <div className={this.state.profileDropdown}>
-            <div className='dropdown-menu' id='dropdown-menu' role='menu'>{ navButtons }</div>
+            <div className='dropdown-menu is-margin-top-small' id='dropdown-menu' role='menu'>{ navButtons }</div>
           </div>
         </div>
-        <div className={this.addActiveClassName('navbar-burger burger is-marginless has-text-white', this.props.burgerState)} onClick={() => this.props.handleBurguer()}>
+        <div className={this.addActiveClassName('navbar-burger burger has-text-white', this.props.burgerState)} onClick={() => this.props.handleBurguer()}>
           <span />
           <span />
           <span />
@@ -119,15 +113,12 @@ class NavBar extends Component {
       <div className='c-topbar__main navbar-menu'>
         <div className='is-flex c-flex-1'>
           <div className='navbar-end'>
-            <div className='navbar-item is-size-7 is-capitalized'>
-              { username }
-            </div>
-            <div className='is-flex is-align-center'>
-              <Image className='is-rounded' src={avatar} width='40' height='45' alt='Avatar' />
-            </div>
+            <span className='navbar-item is-size-7 is-capitalized is-paddingless-right'>
+              Hola, { username }
+            </span>
             <div className='dropdown is-active is-right'>
               <div className='dropdown-trigger is-flex'>
-                <a href='javascript:undefined' className='navbar-item' onClick={() => this.toggleBtnClass()}>
+                <a className='navbar-item' onClick={() => this.toggleBtnClass()}>
                   <span className='icon'>
                     <i className={this.state.dropCaret} />
                   </span>
