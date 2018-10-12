@@ -44,7 +44,7 @@ class AdminNavBar extends Component {
     if (this.props.loggedIn) {
       navButtons = (<div className='field is-grouped'>
         <p className='control'>
-          <button className='bd-tw-button button' onClick={() => this.handleLogout()}>Log out</button>
+          <button className='bd-tw-button button' onClick={() => this.handleLogout()}>Cerrar sesión</button>
         </p>
       </div>)
     } else {

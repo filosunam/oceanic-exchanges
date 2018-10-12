@@ -77,12 +77,12 @@ class NavBar extends Component {
     let username
     if (this.props.loggedIn) {
       if (tree.get('user')) {
-        username = tree.get('user').screenName
+        username = tree.get('user').name
       }
 
       navButtons = (<div className='dropdown-content'>
         <Link className='dropdown-item' onClick={() => this.toggleBtnClass()} to='/profile'>
-          <i className='fa fa-user' />Perfil
+          <i className='fa fa-user' /> Perfil
         </Link>
         <a className='dropdown-item' onClick={() => this.handleLogout()}>
           <i className='fa fa-power-off' />Cerrar sesión
@@ -91,6 +91,9 @@ class NavBar extends Component {
     }
 
     return (<nav className='c-topbar navbar c-fixed' ref={this.setWrapperRef}>
+      <div className='navbar-start is-hidden-desktop'>
+        <Link to='/' className='navbar-item'>Intercambios Oceánicos</Link>
+      </div>
       <div className='navbar-end'>
         <div className='dropdown is-active is-right is-hidden-desktop'>
           <div className='dropdown-trigger is-flex'>

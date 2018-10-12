@@ -16,7 +16,7 @@ const publicationSchema = new Schema({
 
 publicationSchema.methods.toPublic = function () {
   return {
-    uuid: this.uuid,
+    _id: this._id,
     titulo: this.titulo,
     pais: this.pais,
     fechaInicio: this.fechaInicio,
@@ -26,7 +26,7 @@ publicationSchema.methods.toPublic = function () {
 
 publicationSchema.methods.toAdmin = function () {
   return {
-    uuid: this.uuid,
+    _id: this._id,
     titulo: this.titulo,
     pais: this.pais,
     fechaInicio: this.fechaInicio,

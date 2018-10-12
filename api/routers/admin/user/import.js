@@ -20,8 +20,7 @@ module.exports = new Route({
       lov.object().keys({
         email: lov.string().required(),
         password: lov.string().required(),
-        name: lov.string().required(),
-        screenName: lov.string().required()
+        name: lov.string().required()
       })
     )
 

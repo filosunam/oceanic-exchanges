@@ -13,11 +13,6 @@ const schema = {
     label: 'Name',
     required: true
   },
-  screenName: {
-    widget: 'TextWidget',
-    label: 'Screen name',
-    required: true
-  },
   email: {
     widget: 'EmailWidget',
     label: 'Email',

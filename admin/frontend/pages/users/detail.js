@@ -366,7 +366,7 @@ class UserDetail extends PageComponent {
                 <div className='card'>
                   <header className='card-header'>
                     <p className='card-header-title'>
-                      { user.screenName }
+                      { user.name || user.email }
                     </p>
                   </header>
                   <div className='card-content'>

@@ -59,8 +59,8 @@ class ImportUsers extends PageComponent {
                 <h4>El archivo <strong>.csv</strong> debe tener el mismo formato del ejemplo de abajo:
                 </h4>
                 <pre style={{ marginTop: '1em' }}>
-                  "name","screenName","email","password"<br />
-                  "Juan Perez","Juan","juan@coporation.com","password"
+                  "name","email","password"<br />
+                  "Juan Perez","juan@coporation.com","password"
                 </pre>
               </div>
             </div>

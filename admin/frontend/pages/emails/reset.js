@@ -112,7 +112,7 @@ class EmailResetLanding extends PageComponent {
       contentEl = (<div className='card'>
         <header className='card-header'>
           <p className='card-header-title'>
-            Hi {this.state.user.screenName}!
+            Hola {this.state.user.name}!
           </p>
         </header>
         <div className='card-content'>
@@ -127,7 +127,7 @@ class EmailResetLanding extends PageComponent {
       contentEl = (<div className='card'>
         <header className='card-header'>
           <p className='card-header-title'>
-            Hi {this.state.user.screenName}!
+            Hola {this.state.user.name}!
           </p>
           <a className='card-header-icon'>
             <span className='icon'>

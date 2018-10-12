@@ -57,7 +57,7 @@ class Dashboard extends PageComponent {
         <div className='columns'>
           <div className='column'>
             <h1 className='Dashboard-title'>Intercambios Oceánicos</h1>
-            <h2 className='Dashboard-subtitle'>Este es el resumen de tu proyecto</h2>
+            <h2 className='Dashboard-subtitle'>Este es el resumen del proyecto</h2>
           </div>
           <div className='column Dashboard-welcome'>
             <p>Bienvenido</p>

@@ -3,7 +3,7 @@
     {
       "name": "Admin McAdmin",
       "email": "admin@app.com",
-      "screenName": "Admin",
+      "name": "Admin",
       "password": "foobar",
       "isAdmin": true
     }

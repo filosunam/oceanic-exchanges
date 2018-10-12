@@ -9,17 +9,15 @@ module.exports = new Route({
   validator: lov.object().keys({
     name: lov.string(),
     email: lov.string().email().required(),
-    password: lov.string().required(),
-    screenName: lov.string().required()
+    password: lov.string().required()
   }),
   handler: async function (ctx) {
     let user
 
-    const { screenName, name, email, password } = ctx.request.body
+    const { name, email, password } = ctx.request.body
 
     try {
       user = await User.register({
-        screenName,
         name,
         email,
         password

@@ -8,8 +8,7 @@ module.exports = new Route({
   method: 'post',
   path: '/',
   validator: lov.object().keys({
-    email: lov.string().email().required(),
-    screenName: lov.string().required()
+    email: lov.string().email().required()
   }),
   handler: async function (ctx) {
     const userData = ctx.request.body

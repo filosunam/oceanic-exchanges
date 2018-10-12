@@ -111,7 +111,7 @@ class EmailResetLanding extends PageComponent {
         <div className='card'>
           <header className='card-header'>
             <p className='card-header-title'>
-              Hi {this.state.user.screenName}!
+              Hola {this.state.user.name}!
             </p>
             <a className='card-header-icon'>
               <span className='icon'>

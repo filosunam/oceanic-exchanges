@@ -87,7 +87,7 @@ class NavBar extends Component {
       avatar = 'http://1bigappstore.com/images/avt-default.jpg'
 
       if (tree.get('user')) {
-        username = tree.get('user').screenName
+        username = tree.get('user').name
       }
 
       navButtons = (<div className='navbar-end'>
