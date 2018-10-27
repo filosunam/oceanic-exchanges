@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--OriginFramework METS implementation 1.0 (c)2003-->
+<METS:mets xmlns:xsi="http:www.w3.org/2001/XMLSchema-instance" xmlns:METS="http://www.loc.gov/METS/" xmlns:XLINK="http://www.w3.org/TR/xlink" xmlns:DC="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.loc.gov/standards/METS/" OBJID="045ACBA13BDA96AF953258E10D5BA589" TYPE="image/tiff" LABEL="METS IMAGE METADATA">
+<METS:metsHdr CREATEDATE="12/09/2003 8:20:28 PM" LASTMODDATE="12/09/2003 8:20:28 PM">
+<METS:agent ROLE="CREATOR">
+<METS:name>ORIGINFRAMEWORK1.0</METS:name>
+</METS:agent>
+</METS:metsHdr>
+<METS:dmdSec ID="METADATA">
+<METS:mdWrap MIMETYPE="text/xml" MDTYPE="DC" LABEL="DUBLIN CORE METADATA">
+<METS:xmlData>
+<DC:date>18000118</DC:date>
+<DC:title>Gaceta de Mexico 1784-1809</DC:title>
+<DC:city>Ciudad de Mexico</DC:city>
+<DC:state>Distrito Federal</DC:state>
+<DC:country>Mexico</DC:country>
+<DC:category>Diario</DC:category>
+<DC:collection>Hemeroteca</DC:collection>
+<DC:language>SPANISH</DC:language>
+</METS:xmlData>
+</METS:mdWrap>
+<METS:amdSec ID="OCRDATA">
+<METS:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" LABEL="CUSTOM OCR XML DATA">
+<METS:xmlData>
+<hiddentext object="00330-01.tif" version="0">
+<pagecolumn>
+<region>
+<paragraph>
+<line>
+<word coords="378,170,456,110">El</word>
+<word coords="493,170,602,105">día</word>
+<word coords="641,190,684,128">7</word>
+<word coords="721,174,844,106">fue</word>
+<word coords="886,170,1105,128">ciecko</word>
+<word coords="1138,167,1413,104">Cónsul</word>
+<word coords="1453,166,1571,100">del</word>
+<word coords="1616,165,1799,103">Real</word>
+<word coords="1853,166,2221,101">Tribunal</word>
+<word coords="2265,169,2381,101">del</word>
+<word coords="2424,185,2860,106">Consulado</word>
+<word coords="2896,188,2956,146">el</word>
+<word coords="2986,187,3049,131">Se-</word>
+<word coords="171,260,305,199">fíor</word>
+<word coords="351,260,508,201">Don</word>
+<word coords="544,260,929,200">Francisco</word>
+<word coords="969,261,1054,198">de</word>
+<word coords="1106,260,1174,199">la</word>
+<word coords="1233,277,1521,198">Gotera,</word>
+<word coords="1568,259,2085,218">continuando</word>
+<word coords="2133,261,2271,218">con</word>
+<word coords="2312,262,2385,198">la</word>
+<word coords="2431,274,3063,223">correspondiente^</word>
+<word coords="167,352,603,312">andguedad</word>
+<word coords="640,351,704,311">el</word>
+<word coords="739,350,960,291">Señor</word>
+<word coords="1005,353,1170,289">Don</word>
+<word coords="1215,351,1505,291">Gaspar</word>
+<word coords="1542,351,1833,290">Martin</word>
+<word coords="1872,352,2198,287">Vicario.</word>
+<word coords="377,444,485,382">En</word>
+<word coords="534,442,595,402">el</word>
+<word coords="629,443,880,382">Sorteo</word>
+<word coords="921,443,1069,401">3.70</word>
+<word coords="1115,444,1202,381">de</word>
+<word coords="1231,445,1306,381">la</word>
+<word coords="1365,444,1548,383">Real</word>
+<word coords="1581,462,1911,382">I/otería,</word>
+<word coords="1964,448,2357,401">celebrado</word>
+<word coords="2396,449,2464,408">el</word>
+<word coords="2497,451,2618,386">día</word>
+<word coords="2667,457,2752,413">lo</word>
+<word coords="2785,465,3061,395">delcore</word>
+<word coords="158,549,410,493">ríeme,</word>
+<word coords="487,534,691,493">sobre</word>
+<word coords="727,534,789,494">el</word>
+<word coords="828,535,1059,472">fondo</word>
+<word coords="1091,536,1479,494">coleít^bíe</word>
+<word coords="1510,537,1600,473">de</word>
+<word coords="1633,537,1876,495">7q^p.</word>
+<word coords="1905,550,2764,493">se'sorLearon.íS^Soo</word>
+<word coords="2811,553,2903,510">en</word>
+<word coords="2932,562,3042,515">200</word>
+<word coords="149,624,463,562">Preoiios</word>
+<word coords="504,624,538,564">á</word>
+<word coords="578,624,786,564">favor</word>
+<word coords="830,630,925,564">de.</word>
+<word coords="960,626,1070,564">ios</word>
+<word coords="1101,649,1589,567">Accionistas^</word>
+<word coords="1650,632,2022,565">habiendo</word>
+<word coords="2085,635,2355,584">tocado</word>
+<word coords="2422,638,2535,573">las</word>
+<word coords="2577,645,2746,575">die^</word>
+<word coords="2807,662,3041,602">suertes</word>
+<word coords="149,715,472,667">mayores</word>
+<word coords="509,716,546,655">á</word>
+<word coords="587,717,695,656">los</word>
+<word coords="746,720,1030,655">Bilieies</word>
+<word coords="1065,722,1489,678">siguientes.</word>
+<word coords="433,903,717,839">Suertes.</word>
+<word coords="398,995,631,949">I2.OOO</word>
+<word coords="434,1087,627,1029">éooo</word>
+<word coords="426,1177,618,1137">¿2OOO</word>
+<word coords="424,1270,613,1223">2OOO</word>
+<word coords="396,1361,612,1358">.spoo</word>
+<word coords="422,1455,610,1407">lOOQ</word>
+<word coords="414,1545,605,1498">lOOO</word>
+<word coords="413,1637,602,1590">lOOO</word>
+<word coords="410,1729,599,1683">IODO</word>
+<word coords="704,1732,726,1716">*</word>
+<word coords="407,1821,593,1774">1000</word>
+<word coords="1535,912,1808,846">^Billetes</word>
+<word coords="1506,1003,1531,960">1</word>
+<word coords="1558,1003,1581,961">1</word>
+<word coords="1603,1004,1803,947">8278</word>
+<word coords="1502,1095,1527,1052">I</word>
+<word coords="1554,1097,1824,1054">íg&gt;20¿.</word>
+<word coords="1537,1297,1572,1239">5</word>
+<word coords="1588,1299,1682,1224">9?</word>
+<word coords="1693,1301,1728,1242">3</word>
+<word coords="1746,1283,1816,1242">9*</word>
+<word coords="1585,1468,1807,1409">9885.</word>
+<word coords="1484,1561,1802,1516">169528.</word>
+<word coords="1487,1660,1673,1608">roe?</word>
+<word coords="1483,1743,1509,1701">1</word>
+<word coords="1536,1743,1556,1703">1</word>
+<word coords="1478,1840,1808,1794">149977,</word>
+<word coords="2069,1006,2084,990">•</word>
+<word coords="2139,1053,2506,972">^Puebla.</word>
+<word coords="2066,1101,2082,1084">•</word>
+<word coords="2199,1203,2608,1129">Veracruz.</word>
+<word coords="2185,1339,2513,1271">INSéxico.</word>
+<word coords="2052,1471,2071,1454">•</word>
+<word coords="2122,1523,2602,1437">^Veracruz..</word>
+<word coords="2187,1664,2421,1594">Leon*</word>
+<word coords="2120,1803,2512,1712">^México.</word>
+<word coords="120,2145,418,2071">Razón</word>
+<word coords="231,2359,333,2311">31</word>
+<word coords="90,3019,369,2954">Marzo.</word>
+<word coords="79,3114,369,3047">Abril...</word>
+<word coords="388,3208,392,3195">i</word>
+<word coords="404,3210,418,3194">•</word>
+<word coords="429,3208,444,3196">•</word>
+<word coords="455,3204,462,3196">•</word>
+<word coords="479,3211,494,3197">.</word>
+<word coords="505,3209,518,3198">«</word>
+<word coords="531,3212,542,3199">.</word>
+<word coords="63,3398,555,3324">Julio..........',</word>
+<word coords="63,3516,341,3420">Agostp</word>
+<word coords="364,3492,554,3470">.;..;...</word>
+<word coords="9,3575,49,3570">,.</word>
+<word coords="61,3587,566,3507">Septiembre.&quot;»</word>
+<word coords="43,3599,51,3592">-</word>
+<word coords="92,3597,101,3591">-</word>
+<word coords="150,3602,206,3587">•-</word>
+<word coords="16,3753,36,3718">1=</word>
+<word coords="56,3707,556,3691">Noviembre..'</word>
+<word coords="1202,2404,1473,2333">1799,</word>
+<word coords="1519,2391,1663,2344">¿Y?»</word>
+<word coords="892,2950,1108,2890">Oooo.</word>
+<word coords="887,3044,1104,2983">§000.</word>
+<word coords="884,3136,1099,3074">§O;OO.</word>
+<word coords="883,3228,1094,3168">§000.</word>
+<word coords="730,3323,1095,3272">1878258.</word>
+<word coords="774,3344,781,3337">-</word>
+<word coords="837,3336,855,3325">''</word>
+<word coords="877,3339,884,3332">»</word>
+<word coords="937,3348,943,3340">,</word>
+<word coords="990,3344,1003,3332">X</word>
+<word coords="1017,3335,1022,3331">•</word>
+<word coords="873,3416,1090,3349">§000.</word>
+<word coords="718,3517,753,3457">3</word>
+<word coords="772,3501,857,3457">2.6</word>
+<word coords="870,3507,1007,3447">§02</word>
+<word coords="1021,3510,1089,3451">3;</word>
+<word coords="875,3628,882,3621">.</word>
+<word coords="898,3628,907,3621">^</word>
+<word coords="955,3628,959,3623">.</word>
+<word coords="970,3628,980,3621">-,</word>
+<word coords="868,3696,1084,3648">€)qop.</word>
+<word coords="724,3789,1084,3735">172^,096;</word>
+<word coords="679,3965,1056,3965">9579094-'</word>
+<word coords="756,2620,857,2558">£N</word>
+<word coords="938,2630,1171,2563">ORO.</word>
+<word coords="1250,2650,1260,2573">)</word>
+<word coords="1366,2623,1373,2617">.</word>
+<word coords="1426,2633,1556,2576">üN</word>
+<word coords="1650,2646,2020,2579">PLATA.</word>
+<word coords="1435,2885,1582,2853">-7fí</word>
+<word coords="1382,2959,1828,2916">2.1799367.</word>
+<word coords="1911,2970,1969,2927">5.</word>
+<word coords="1384,3051,1411,3011">i</word>
+<word coords="1455,3060,1831,2998">6769397.</word>
+<word coords="1898,3083,1997,3025">cf</word>
+<word coords="1373,3248,1396,3197">?</word>
+<word coords="1415,3261,1745,3230">.67^9^9</word>
+<word coords="1369,3333,1420,3290">í.</word>
+<word coords="1437,3339,1808,3293">45/^00,</word>
+<word coords="1364,3431,1808,3384">1.762.9083,</word>
+<word coords="1358,3538,1514,3477">1.83</word>
+<word coords="1696,3543,1804,3484">Sv</word>
+<word coords="1882,3628,1992,3585">SÍ-</word>
+<word coords="1872,3738,1903,3702">¿</word>
+<word coords="1930,3741,1960,3709">2</word>
+<word coords="1873,3794,1898,3774">o</word>
+<word coords="1920,3796,1957,3759">Jl</word>
+<word coords="1341,3892,1366,3853">i</word>
+<word coords="1413,3903,1791,3857">9/4343.*-</word>
+<word coords="1938,2280,1973,2241">^</word>
+<word coords="2032,2286,2062,2240">I</word>
+<word coords="1938,2283,1967,2266">'--</word>
+<word coords="2036,2287,2061,2271">«.</word>
+<word coords="2349,2405,2437,2333">7a</word>
+<word coords="2400,2667,2776,2595">TOTAL.</word>
+<word coords="2352,2896,2765,2873">.7158499.</word>
+<word coords="2832,2897,2930,2844">6j.</word>
+<word coords="2299,2992,2763,2937">2.1799867.</word>
+<word coords="2834,2993,2884,2950">5.</word>
+<word coords="2301,3086,2763,3032">1.6769897.</word>
+<word coords="2827,3084,2924,3049">of.</word>
+<word coords="2293,3167,2354,3151">-i«</word>
+<word coords="2622,3177,2753,3145">•Sr.</word>
+<word coords="2821,3164,2907,3139">¿¿</word>
+<word coords="2860,3461,2904,3449">2-</word>
+<word coords="2288,3453,2738,3406">1-762^053.</word>
+<word coords="2277,3553,2739,3499">2.1579983.</word>
+<word coords="2808,3555,2861,3514">3.</word>
+<word coords="2274,3630,2329,3594">i.</word>
+<word coords="2347,3638,2386,3582">ó</word>
+<word coords="2405,3641,2551,3607">¿79</word>
+<word coords="2567,3662,2787,3601">594.;</word>
+<word coords="2806,3644,2897,3574">¿i,</word>
+<word coords="2273,3729,2290,3689">i</word>
+<word coords="2340,3739,2732,3691">753^820.</word>
+<word coords="2799,3760,2876,3700">3|</word>
+<word coords="2263,3829,2585,3782">2-3CÍ§I</word>
+<word coords="2616,3835,2725,3793">21.</word>
+<word coords="2258,3915,2294,3876">2</word>
+<word coords="2336,3924,2579,3888">'2.091</word>
+<word coords="2612,3926,2728,3887">50:</word>
+<word coords="2798,3927,2845,3889">5.</word>
+<word coords="2203,4055,2314,4013">22.</word>
+<word coords="2331,4065,2716,4019">055^125.</word>
+</line>
+</paragraph>
+</region>
+</pagecolumn>
+</hiddentext>
+</METS:xmlData>
+</METS:mdWrap>
+</METS:amdSec>
+</METS:dmdSec>
+</METS:mets>

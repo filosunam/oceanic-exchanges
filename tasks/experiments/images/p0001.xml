@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--OriginFramework METS implementation 1.0 (c)2003-->
+<METS:mets xmlns:xsi="http:www.w3.org/2001/XMLSchema-instance" xmlns:METS="http://www.loc.gov/METS/" xmlns:XLINK="http://www.w3.org/TR/xlink" xmlns:DC="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.loc.gov/standards/METS/" OBJID="045ACBA13BDA96AF953258E10D5BA589" TYPE="image/tiff" LABEL="METS IMAGE METADATA">
+<METS:metsHdr CREATEDATE="12/09/2003 8:20:27 PM" LASTMODDATE="12/09/2003 8:20:27 PM">
+<METS:agent ROLE="CREATOR">
+<METS:name>ORIGINFRAMEWORK1.0</METS:name>
+</METS:agent>
+</METS:metsHdr>
+<METS:dmdSec ID="METADATA">
+<METS:mdWrap MIMETYPE="text/xml" MDTYPE="DC" LABEL="DUBLIN CORE METADATA">
+<METS:xmlData>
+<DC:date>18000118</DC:date>
+<DC:title>Gaceta de Mexico 1784-1809</DC:title>
+<DC:city>Ciudad de Mexico</DC:city>
+<DC:state>Distrito Federal</DC:state>
+<DC:country>Mexico</DC:country>
+<DC:category>Diario</DC:category>
+<DC:collection>Hemeroteca</DC:collection>
+<DC:language>SPANISH</DC:language>
+</METS:xmlData>
+</METS:mdWrap>
+<METS:amdSec ID="OCRDATA">
+<METS:mdWrap MIMETYPE="text/xml" MDTYPE="OTHER" LABEL="CUSTOM OCR XML DATA">
+<METS:xmlData>
+<hiddentext object="00328-02.tif" version="0">
+<pagecolumn>
+<region>
+<paragraph>
+<line>
+<word coords="99,109,347,44">Tonie</word>
+<word coords="416,99,523,30">X.</word>
+<word coords="1331,104,1603,27">Kum*</word>
+<word coords="1672,104,1758,47">7*</word>
+<word coords="684,727,1171,654">SABADO</word>
+<word coords="1262,733,1369,681">i8</word>
+<word coords="1469,684,2161,656">DEJENÉRG'</word>
+<word coords="2228,743,2401,665">DÉ</word>
+<word coords="2478,751,2718,696">1800,</word>
+<word coords="999,1044,1335,960">Puebla</word>
+<word coords="1384,1045,1878,963">Diciembre</word>
+<word coords="2000,1060,2035,1058">•»^-</word>
+<word coords="41,1147,326,1086">CON</word>
+<word coords="368,1138,652,1101">motivo</word>
+<word coords="701,1136,798,1071">de</word>
+<word coords="831,1134,903,1072">la</word>
+<word coords="944,1136,1373,1094">celebridad</word>
+<word coords="1418,1138,1511,1074">de</word>
+<word coords="1547,1138,1656,1075">los</word>
+<word coords="1694,1140,1851,1076">días</word>
+<word coords="1888,1142,2002,1079">del</word>
+<word coords="2044,1145,2156,1080">Sr.</word>
+<word coords="2194,1148,2290,1082">D.</word>
+<word coords="2332,1120,2666,1084">Manuel'</word>
+<word coords="2685,1151,2779,1086">de</word>
+<word coords="2813,1171,3035,1086">Fien,</word>
+<word coords="226,1231,553,1177">Coronel</word>
+<word coords="598,1230,827,1170">deles</word>
+<word coords="871,1227,1129,1167">Realeo</word>
+<word coords="1162,1229,1355,1166">Exer</word>
+<word coords="1360,1230,1399,1221">.e</word>
+<word coords="1410,1227,1428,1167">i</word>
+<word coords="1439,1247,1579,1184">tos.,</word>
+<word coords="1650,1237,2164,1168">Gobernador</word>
+<word coords="2185,1238,2222,1181">é</word>
+<word coords="2234,1219,2239,1214">•</word>
+<word coords="2270,1241,2706,1178">Intendente</word>
+<word coords="2748,1244,2840,1181">de</word>
+<word coords="2884,1244,3036,1203">esta</word>
+<word coords="34,1331,334,1277">Ciudad</word>
+<word coords="382,1346,428,1289">y</word>
+<word coords="469,1328,566,1319">.-su</word>
+<word coords="617,1338,1051,1261">Provincia,</word>
+<word coords="1111,1320,1187,1280">se</word>
+<word coords="1235,1321,1321,1258">ha</word>
+<word coords="1362,1325,1750,1281">estrenado</word>
+<word coords="1796,1326,1894,1285">en</word>
+<word coords="1980,1328,2042,1288">el</word>
+<word coords="2091,1334,2383,1269">Colino</word>
+<word coords="2427,1334,2469,1273">á</word>
+<word coords="2541,1335,2898,1294">expensas</word>
+<word coords="2938,1338,3031,1274">de</word>
+<word coords="36,1433,122,1392">su</word>
+<word coords="177,1416,546,1368">Asentista</word>
+<word coords="618,1416,727,1377">un</word>
+<word coords="773,1414,1016,1355">Telón</word>
+<word coords="1063,1416,1314,1375">nuevo</word>
+<word coords="1366,1417,1545,1374">para</word>
+<word coords="1609,1420,1900,1376">adorno</word>
+<word coords="1969,1422,2063,1359">de</word>
+<word coords="2110,1424,2330,1383">aquel</word>
+<word coords="2401,1446,2717,1363">Teairo,</word>
+<word coords="2803,1429,3029,1365">hecho</word>
+<word coords="42,1522,178,1485">por</word>
+<word coords="220,1520,293,1461">la</word>
+<word coords="360,1507,732,1510">.conocida</word>
+<word coords="783,1507,1166,1471">ventajosa</word>
+<word coords="1233,1510,1612,1444">habilidad</word>
+<word coords="1659,1511,1779,1447">del</word>
+<word coords="1834,1516,2116,1450">diestro</word>
+<word coords="2165,1518,2430,1454">Pintor</word>
+<word coords="2495,1519,2666,1456">Don</word>
+<word coords="2727,1522,3029,1458">Miguel</word>
+<word coords="42,1607,438,1556">Sendejas:</word>
+<word coords="480,1604,915,1544">dejnue-stra</word>
+<word coords="947,1600,1051,1582">,eii</word>
+<word coords="1096,1603,1170,1542">él</word>
+<word coords="1238,1602,1310,1561">al</word>
+<word coords="1381,1603,1705,1561">primero</word>
+<word coords="1735,1606,1890,1585">-que</word>
+<word coords="1933,1608,2056,1544">fue</word>
+<word coords="2096,1610,2444,1547">inventor</word>
+<word coords="2485,1611,2583,1548">d.e</word>
+<word coords="2620,1585,2705,1549">lar-</word>
+<word coords="2733,1601,3032,1551">Tragedia</word>
+<word coords="198,1704,348,1697">.que</word>
+<word coords="397,1710,875,1639">fué'Tespis,</word>
+<word coords="917,1694,1070,1631">hijo</word>
+<word coords="1111,1694,1199,1632">de</word>
+<word coords="1236,1714,1479,1631">Icaro,</word>
+<word coords="1528,1695,1580,1656">y:</word>
+<word coords="1634,1696,1706,1656">al</word>
+<word coords="1746,1701,2076,1635">Filósofo</word>
+<word coords="2121,1721,2376,1639">Solon&gt;</word>
+<word coords="2416,1703,2722,1664">quienes</word>
+<word coords="2757,1694,3030,1664">siguieron</word>
+<word coords="213,1800,310,1760">en</word>
+<word coords="349,1794,438,1766">;su</word>
+<word coords="485,1789,772,1753">intento</word>
+<word coords="817,1787,1018,1727">hasta</word>
+<word coords="1058,1787,1129,1748">el</word>
+<word coords="1161,1789,1443,1744">tuttupo</word>
+<word coords="1477,1792,1574,1726">de</word>
+<word coords="1629,1793,1920,1727">Eschilo</word>
+<word coords="1940,1794,2049,1764">jen</word>
+<word coords="2094,1789,2416,1732">Atenas,,</word>
+<word coords="2436,1797,2592,1757">&lt;jiie</word>
+<word coords="2631,1779,2772,1734">fue-</word>
+<word coords="2790,1802,3023,1762">qiiieii</word>
+<word coords="42,1889,446,1838">imroduxo</word>
+<word coords="485,1887,531,1887">.á</word>
+<word coords="579,1884,693,1823">ios</word>
+<word coords="734,1881,1359,1822">Representantes</word>
+<word coords="1395,1900,1414,1868">,</word>
+<word coords="1469,1883,1754,1842">redujo</word>
+<word coords="1792,1885,1839,1824">á</word>
+<word coords="1912,1886,2016,1845">un</word>
+<word coords="2062,1889,2263,1824">Coro</word>
+<word coords="2315,1862,2398,1826">la'</word>
+<word coords="2419,1909,2768,1827">Masica',</word>
+<word coords="2839,1914,2885,1854">y</word>
+<word coords="2921,1879,3022,1831">levantó</word>
+<word coords="313,1984,381,1945">el</word>
+<word coords="423,1975,719,1919">Teatro.</word>
+<word coords="772,1976,1083,1915">Tridico</word>
+<word coords="1127,1976,1222,1935">en</word>
+<word coords="1267,1975,1510,1915">Reina</word>
+<word coords="1585,1979,1994,1914">introduxo</word>
+<word coords="2029,1998,2417,1939">rnugeres,</word>
+<word coords="2460,2002,2502,1942">y</word>
+<word coords="2563,1982,2651,1920">de</word>
+<word coords="2689,1984,2874,1942">estos</word>
+<word coords="2915,1987,3021,1925">Los</word>
+<word coords="49,2077,382,2024">ingenios</word>
+<word coords="421,2075,508,2013">de</word>
+<word coords="557,2087,802,2010">Italia,</word>
+<word coords="850,2086,1282,2007">Germania,</word>
+<word coords="1327,2070,1648,2008">Francia</word>
+<word coords="1686,2026,1748,2030">y'</word>
+<word coords="1774,2073,2070,2009">España</word>
+<word coords="2139,2074,2287,2010">han</word>
+<word coords="2334,2077,2563,2011">hecho</word>
+<word coords="2599,2076,2706,2012">los</word>
+<word coords="2748,2064,3026,2038">primo-</word>
+<word coords="40,2178,152,2137">íes</word>
+<word coords="192,2125,339,2137">que&quot;</word>
+<word coords="364,2169,498,2129">son</word>
+<word coords="535,2163,871,2139">^célebres</word>
+<word coords="914,2142,1134,2100">hasta^</word>
+<word coords="1161,2162,1234,2121">el</word>
+<word coords="1279,2163,1420,2101">día.</word>
+<word coords="166,2376,220,2313">L</word>
+<word coords="249,2371,370,2310">día</word>
+<word coords="406,2367,737,2332">primero</word>
+<word coords="769,2367,875,2349">-de</word>
+<word coords="916,2366,1062,2324">este</word>
+<word coords="1113,2365,1266,2324">mes</word>
+<word coords="1302,2365,1658,2325">procedió</word>
+<word coords="1685,2364,1754,2323">el</word>
+<word coords="1824,2368,2093,2304">Ilustre</word>
+<word coords="2137,2370,2725,2302">Ayuntamiento</word>
+<word coords="2762,2372,2853,2308">de</word>
+<word coords="2911,2360,3018,2332">esta</word>
+<word coords="315,2464,611,2403">Ciudad</word>
+<word coords="670,2461,711,2399">á</word>
+<word coords="748,2461,837,2421">su</word>
+<word coords="891,2459,1117,2421">anual</word>
+<word coords="1160,2457,1495,2459">.elec-eion</word>
+<word coords="1560,2456,1651,2393">de</word>
+<word coords="1687,2459,2027,2398">Alcsldes</word>
+<word coords="2070,2479,2545,2398">Ordinarios,</word>
+<word coords="2589,2468,3014,2421">resultando</word>
+<word coords="36,2560,317,2538">jqujsdar</word>
+<word coords="356,2561,454,2498">¿Le</word>
+<word coords="517,2555,798,2517">primer</word>
+<word coords="840,2554,1013,2516">vot®</word>
+<word coords="1076,2553,1140,2511">el</word>
+<word coords="1222,2550,1555,2491">Regidor</word>
+<word coords="1612,2553,1979,2510">perpetuo</word>
+<word coords="2031,2552,2202,2491">Don</word>
+<word coords="2238,2553,2421,2491">Luis</word>
+<word coords="2472,2557,2829,2492">Gonzaga</word>
+<word coords="2881,2543,3016,2498">Rico</word>
+<word coords="159,2678,199,2618">y</word>
+<word coords="255,2663,731,2594">Valenzuela,</word>
+<word coords="794,2647,881,2610">y'.</word>
+<word coords="878,2652,971,2586">de</word>
+<word coords="1021,2645,1362,2604">segundo</word>
+<word coords="1431,2644,1602,2582">Don</word>
+<word coords="1665,2645,1948,2583">Joseph</word>
+<word coords="1987,2644,2262,2583">Gómez</word>
+<word coords="2318,2666,2711,2586">Morante,</word>
+<word coords="2789,2672,2831,2611">y</word>
+<word coords="2876,2650,3013,2610">por</word>
+<word coords="23,2750,225,2744">.otras</word>
+<word coords="270,2759,713,2708">^lecciones,</word>
+<word coords="784,2743,874,2679">dé</word>
+<word coords="928,2738,1413,2678">Procurador</word>
+<word coords="1458,2736,1758,2697">general</word>
+<word coords="1827,2737,1890,2697">el</word>
+<word coords="1932,2738,2084,2676">Lie.</word>
+<word coords="2148,2740,2334,2738">.Don</word>
+<word coords="2377,2740,2657,2679">Joseph</word>
+<word coords="2701,2743,3015,2679">Estrada</word>
+<word coords="28,2859,398,2784">Navedas,</word>
+<word coords="444,2860,489,2801">y</word>
+<word coords="534,2837,651,2835">.¿le</word>
+<word coords="690,2838,994,2774">Síndico</word>
+<word coords="1033,2786,1460,2772">Per^sójaeío'</word>
+<word coords="1498,2831,1614,2769">del</word>
+<word coords="1658,2833,1958,2767">Goinun</word>
+<word coords="2000,2833,2169,2770">JDón</word>
+<word coords="2211,2833,2532,2770">Ma-nuel</word>
+<word coords="2578,2835,2669,2771">de</word>
+<word coords="2721,2840,2792,2770">la</word>
+<word coords="2832,2819,3011,2773">Bár-</word>
+<word coords="255,2959,297,2896">y</word>
+<word coords="347,2935,576,2874">Llata.</word>
+<word coords="133,3140,208,3065">Ñ</word>
+<word coords="249,3137,313,3097">el</word>
+<word coords="349,3137,641,3075">Curato</word>
+<word coords="676,3135,774,3070">de</word>
+<word coords="804,3134,961,3092">£ste</word>
+<word coords="998,3137,1188,3069">B¡^al</word>
+<word coords="1230,3108,1294,3091">y-</word>
+<word coords="1324,3127,1581,3067">Minas</word>
+<word coords="1612,3128,1711,3087">en</word>
+<word coords="1756,3129,1833,3085">el</word>
+<word coords="1877,3128,2020,3086">and</word>
+<word coords="2052,3128,2149,3062">de</word>
+<word coords="2200,3147,2393,3084">1799</word>
+<word coords="2441,3129,2642,3063">hubo</word>
+<word coords="646,3278,772,3260">De'</word>
+<word coords="801,3319,1226,3247">Españoles.</word>
+<word coords="1286,3321,1304,3304">.</word>
+<word coords="1363,3316,1377,3301">.</word>
+<word coords="1444,3316,1610,3276">0*3*2.</word>
+<word coords="641,3417,753,3354">pe</word>
+<word coords="795,3414,1067,3354">Indios.</word>
+<word coords="1130,3410,1381,3400">....</word>
+<word coords="1436,3409,1616,3369">33'S.</word>
+<word coords="1716,3434,1763,3346">f</word>
+<word coords="1827,3362,1849,3346">'</word>
+<word coords="1908,3362,1926,3346">'</word>
+<word coords="1990,3361,2005,3346">'</word>
+<word coords="643,3604,756,3541">De</word>
+<word coords="797,3599,1220,3541">Españoles.</word>
+<word coords="1300,3602,1318,3586">.</word>
+<word coords="1377,3597,1394,3583">.</word>
+<word coords="1446,3595,1593,3557">oro</word>
+<word coords="637,3642,695,3635">—</word>
+<word coords="787,3656,821,3636">-r</word>
+<word coords="899,3644,950,3601">f.</word>
+<word coords="637,3699,750,3635">De</word>
+<word coords="787,3696,1064,3634">Indios.</word>
+<word coords="1124,3697,1143,3681">.</word>
+<word coords="1202,3695,1217,3680">.</word>
+<word coords="1277,3704,1300,3669">&gt;</word>
+<word coords="1363,3692,1378,3677">.</word>
+<word coords="1436,3708,1586,3651">053</word>
+<word coords="324,3794,367,3754">n</word>
+<word coords="372,3794,636,3742">fierros*</word>
+<word coords="639,3886,754,3823">De</word>
+<word coords="798,3884,1221,3823">Españoles,</word>
+<word coords="1281,3884,1299,3868">.</word>
+<word coords="1356,3880,1375,3866">-</word>
+<word coords="1438,3877,1613,3840">015.</word>
+<word coords="1712,3877,1727,3810">I</word>
+<word coords="632,3937,707,3892">V^</word>
+<word coords="798,3950,826,3918">T</word>
+<word coords="895,3923,956,3920">j-</word>
+<word coords="1437,3950,1578,3934">^eí</word>
+<word coords="1715,3927,2079,3872">&gt;-•••-..</word>
+<word coords="2141,3925,2283,3884">096</word>
+<word coords="640,3981,755,3922">ij=e</word>
+<word coords="795,3979,1068,3922">Indios.</word>
+<word coords="1131,3974,1374,3964">....</word>
+<word coords="1436,3971,1604,3934">coi.</word>
+<word coords="1360,4079,1439,4032">/a</word>
+<word coords="1512,4076,1931,4001">Sfí^r^-é.</word>
+<word coords="130,4186,188,4121">L</word>
+<word coords="222,4187,497,4120">Ilustre</word>
+<word coords="543,4182,1145,4120">Ayuntamiento</word>
+<word coords="1211,4181,1301,4118">de</word>
+<word coords="1339,4175,1487,4138">esta</word>
+<word coords="1565,4175,1867,4111">Ciudad</word>
+<word coords="1914,4173,2142,4134">eligió</word>
+<word coords="2191,4170,2256,4130">el</word>
+<word coords="2323,4169,2438,4105">diá</word>
+<word coords="2492,4172,2815,4128">primero</word>
+<word coords="2885,4172,3004,4103">del</word>
+<word coords="175,4283,560,4236">corriente</word>
+<word coords="601,4281,793,4237">para</word>
+<word coords="827,4277,1143,4213">Alcalde</word>
+<word coords="1175,4272,1585,4212">Ordinario</word>
+<word coords="1621,4272,1696,4227">ai</word>
+<word coords="1749,4269,2088,4206">Regidor</word>
+<word coords="2128,4263,2418,4203">Alférez,</word>
+<word coords="2462,4267,2644,4203">Real</word>
+<word coords="2681,4250,3006,4201">honora.*</word>
+</line>
+</paragraph>
+</region>
+</pagecolumn>
+</hiddentext>
+</METS:xmlData>
+</METS:mdWrap>
+</METS:amdSec>
+</METS:dmdSec>
+</METS:mets>
