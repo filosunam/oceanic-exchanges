@@ -7,18 +7,18 @@ upstream appServer {
 }
 
 upstream adminServer {
-  server localhost:5000;
+  server localhost:4050;
 }
 
-
 server {
-  listen 80;
-  server_name marbleseeds.io;
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name _;
 
-  root /home/app/marble-seed/;
+  root /home/oceanicex/oceanic-exchanges/;
 
-  access_log /var/log/nginx/marbleseeds.access.log;
-  error_log /var/log/nginx/marble-seed.error.log;
+  access_log /var/log/nginx/oceanicex.access.log;
+  error_log /var/log/nginx/oceanicex.error.log;
 
   client_max_body_size 0;
   try_files $uri @appServer;
@@ -55,9 +55,4 @@ server {
     proxy_set_header X-Forwarded-For
     $proxy_add_x_forwarded_for;
   }
-}
-
-server {
-  server_name www.marbleseeds.io;
-  return 301 $scheme://marbleseeds.io$request_uri;
 }
