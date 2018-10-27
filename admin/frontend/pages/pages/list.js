@@ -32,49 +32,6 @@ class PublicationList extends ListPageComponent {
         'title': 'Título',
         'property': 'titulo',
         'default': 'N/A'
-      },
-      {
-        'title': 'País',
-        'property': 'pais',
-        'default': 'N/A'
-      },
-      {
-        'title': 'Estado',
-        'property': 'estado',
-        'default': 'N/A'
-      },
-      {
-        'title': 'Ciudad',
-        'property': 'ciudad',
-        'default': 'N/A'
-      },
-      {
-        'title': 'Desde',
-        'property': 'fechaInicio',
-        'default': 'N/A',
-        formatter: (row) => {
-          if (row.fechaInicio) {
-            return moment(row.fechaInicio).format('DD/MM/YYYY')
-          }
-        }
-      },
-      {
-        'title': 'Hasta',
-        'property': 'fechaFinalizo',
-        'default': 'N/A',
-        formatter: (row) => {
-          if (row.fechaFinalizo) {
-            return moment(row.fechaFinalizo).format('DD/MM/YYYY')
-          }
-        }
-      },
-      {
-        'title': ' ',
-        formatter: (row) => {
-          return <Link className='button' to={'/publications/' + row._id}>
-            Detalle
-          </Link>
-        }
       }
     ]
   }
@@ -165,14 +122,14 @@ class PublicationList extends ListPageComponent {
 }
 
 PublicationList.config({
-  name: 'publication-list',
-  path: '/publications',
-  title: 'Publicaciones',
-  icon: 'book',
+  name: 'pages-list',
+  path: '/pages',
+  title: 'Páginas',
+  icon: 'file-text',
   exact: true,
   validate: loggedIn,
 
-  apiUrl: '/admin/publications'
+  apiUrl: '/admin/pages'
 })
 
 export default PublicationList

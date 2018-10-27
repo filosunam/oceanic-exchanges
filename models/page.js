@@ -5,6 +5,7 @@ const dataTables = require('mongoose-datatables')
 
 const pageSchema = new Schema({
   uuid: { type: String, default: v4 },
+  publicacion_id: { type: Schema.Types.ObjectId, ref: 'Publication' },
   titulo: { type: String },
   ocr: { type: String }
 }, {
@@ -15,6 +16,7 @@ const pageSchema = new Schema({
 pageSchema.methods.toPublic = function () {
   return {
     uuid: this.uuid,
+    publication: this.publicacion_id,
     ocr: this.ocr
   }
 }
@@ -22,6 +24,7 @@ pageSchema.methods.toPublic = function () {
 pageSchema.methods.toAdmin = function () {
   return {
     uuid: this.uuid,
+    publication: this.publicacion_id,
     ocr: this.ocr
   }
 }

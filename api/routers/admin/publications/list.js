@@ -12,11 +12,14 @@ module.exports = new Route({
   handler: async function (ctx) {
     const filters = await queryParams.toFilters(ctx.request.query)
 
+    if (filters.tipoAcceso) {
+      filters.tipoAcceso = filters.tipoAcceso === 'true'
+    }
+
     const publications = await Publication.dataTables({
       limit: ctx.request.query.limit || 20,
       skip: ctx.request.query.start,
-      // find: {isDeleted: { $ne: true }, ...filters},
-      // sort: ctx.request.query.sort || '-createdAt',
+      find: filters,
       formatter: 'toAdmin'
     })
 

@@ -33,7 +33,7 @@ class Profile extends PageComponent {
 
             <div className='panel is-bg-white'>
               <p className='panel-heading'>
-                Perfil
+                Seguridad
               </p>
               <div className='panel-block panel-body'>
                 <UpdatePasswordForm />

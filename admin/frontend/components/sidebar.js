@@ -19,6 +19,7 @@ import FormBuilder from '../pages/developer-tools/form-builder'
 
 // #Import
 import Publications from '../pages/publications/list'
+import Pages from '../pages/pages/list'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -51,6 +52,8 @@ class Sidebar extends Component {
   getMenuItems () {
     return [
       Dashboard.asSidebarItem(),
+      Publications.asSidebarItem(),
+      Pages.asSidebarItem(),
       {
         title: 'Administrar equipo',
         icon: 'users',
@@ -63,17 +66,16 @@ class Sidebar extends Component {
           // Groups.asSidebarItem()
         ]
       },
-      Publications.asSidebarItem(),
       // #Modules
-      {
-        title: 'Importar',
-        icon: 'cloud-upload',
-        to: '/import',
-        open: false,
-        dropdown: [
-          UsersImport.asSidebarItem()
-        ]
-      }, {
+      // {
+      //   title: 'Importar',
+      //   icon: 'cloud-upload',
+      //   to: '/import',
+      //   open: false,
+      //   dropdown: [
+      //     UsersImport.asSidebarItem()
+      //   ]
+      // }, {
       //   title: 'Desarrolladores',
       //   icon: 'github',
       //   to: '/devtools',
@@ -83,7 +85,8 @@ class Sidebar extends Component {
       //     AppConfig.asSidebarItem(),
       //     FormBuilder.asSidebarItem()
       //   ]
-      // }, {
+      // },
+      {
         title: 'Restaurar',
         icon: 'trash-o',
         to: '/restore',

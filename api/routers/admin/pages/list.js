@@ -15,9 +15,9 @@ module.exports = new Route({
     const pages = await Page.dataTables({
       limit: ctx.request.query.limit || 20,
       skip: ctx.request.query.start,
-      // find: {isDeleted: { $ne: true }, ...filters},
-      // sort: ctx.request.query.sort || '-createdAt',
-      format: 'toAdmin'
+      find: filters,
+      populate: 'publicacion_id',
+      formatter: 'toAdmin'
     })
 
     ctx.body = pages

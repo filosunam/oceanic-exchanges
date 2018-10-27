@@ -29,6 +29,8 @@ import Buttons from './pages/ui-components/buttons'
 import FormBuilder from './pages/developer-tools/form-builder'
 // #Import
 import Publications from './pages/publications/list'
+import PublicationDetail from './pages/publications/detail'
+import Pages from './pages/pages/list'
 
 class NotFoundPage extends Component {
   constructor (props) {
@@ -74,6 +76,8 @@ const AppRouter = () => {
 
           {/* Add routes here */}
           {Publications.asRouterItem()}
+          {PublicationDetail.asRouterItem()}
+          {Pages.asRouterItem()}
 
           <Route component={NotFoundPage} />
         </Switch>

@@ -7,6 +7,8 @@ const publicationSchema = new Schema({
   uuid: { type: String, default: v4 },
   titulo: { type: String },
   pais: { type: String },
+  estado: { type: String },
+  ciudad: { type: String },
   fechaInicio: { type: Date },
   fechaFinalizo: { type: Date }
 }, {
@@ -19,6 +21,8 @@ publicationSchema.methods.toPublic = function () {
     _id: this._id,
     titulo: this.titulo,
     pais: this.pais,
+    estado: this.estado,
+    ciudad: this.ciudad,
     fechaInicio: this.fechaInicio,
     fechaFinalizo: this.fechaFinalizo
   }
@@ -29,6 +33,8 @@ publicationSchema.methods.toAdmin = function () {
     _id: this._id,
     titulo: this.titulo,
     pais: this.pais,
+    estado: this.estado,
+    ciudad: this.ciudad,
     fechaInicio: this.fechaInicio,
     fechaFinalizo: this.fechaFinalizo
   }
