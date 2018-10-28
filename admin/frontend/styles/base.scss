@@ -160,7 +160,7 @@ html, body {
 
 .wrap {
   min-height: 100vh;
-  @media only screen and (max-width: 450px) and (orientation: portrait) {
+  @include touch {
     & .sidebar-container {
       position: fixed;
       z-index: 999;

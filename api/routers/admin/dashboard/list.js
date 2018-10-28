@@ -1,6 +1,6 @@
 const Route = require('lib/router/route')
 
-const {Organization, User, Role, Group} = require('models')
+const {Organization, User, Role, Group, Publication, Page} = require('models')
 
 module.exports = new Route({
   method: 'get',
@@ -11,11 +11,16 @@ module.exports = new Route({
     const rolesCount = await Role.find({'isDeleted': false}).count()
     const groupsCount = await Group.find({'isDeleted': false}).count()
 
+    const publicationsCount = await Publication.count()
+    const pagesCount = await Page.count()
+
     ctx.body = {
       orgsCount: orgsCount,
       usersCount: usersCount,
       rolesCount: rolesCount,
-      groupsCount: groupsCount
+      groupsCount: groupsCount,
+      publicationsCount,
+      pagesCount
     }
   }
 })

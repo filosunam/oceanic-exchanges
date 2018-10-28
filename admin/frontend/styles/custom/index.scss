@@ -36,3 +36,44 @@
 .is-margin-right-large { margin-right: 2rem !important; }
 .is-margin-bottom-large { margin-bottom: 2rem !important; }
 .is-margin-left-large { margin-left: 2rem !important; }
+
+.has-shadow-right {
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.35)
+}
+
+.offcanvas {
+  z-index: 1;
+  background: rgba(9,56,82,1);
+  background: -moz-linear-gradient(-45deg, rgba(9,56,82,1) 0%, rgba(8,49,71,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(9,56,82,1)), color-stop(100%, rgba(8,49,71,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(9,56,82,1) 0%, rgba(8,49,71,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(9,56,82,1) 0%, rgba(8,49,71,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(9,56,82,1) 0%, rgba(8,49,71,1) 100%);
+  background: linear-gradient(135deg, rgba(9,56,82,1) 0%, rgba(8,49,71,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#093852', endColorstr='#083147', GradientType=1 );
+
+  .menu-list li {
+    background: transparent !important;
+
+    a {
+      position: relative;
+      display: flex;
+      padding: 1em;
+    }
+
+    span.icon:not(.is-pulled-right) {
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+
+    span.item-link-title {
+      line-height: 1.5;
+    }
+
+    span.icon.is-pulled-right {
+      position: absolute;
+      right: 10px;
+      font-size: 13px;
+    }
+  }
+}

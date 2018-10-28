@@ -125,6 +125,7 @@ class Sidebar extends Component {
   render () {
     let divClass = 'offcanvas column is-narrow is-narrow-mobile is-narrow-tablet is-narrow-desktop  is-paddingless'
     const menuClass = classNames('menu', {
+      'has-shadow-right': !this.state.collapsed,
       'menu-collapsed': this.state.collapsed
     })
 
@@ -144,7 +145,7 @@ class Sidebar extends Component {
     return (<div className={sidebarClass}><div className={divClass}>
       <aside className={menuClass}>
         <div className='sidebar-brand'>
-          <h1 className='title is-5'>
+          <h1 className='title is-5 has-text-weight-normal'>
             <Link to='/'>
               Intercambios Oceánicos
             </Link>

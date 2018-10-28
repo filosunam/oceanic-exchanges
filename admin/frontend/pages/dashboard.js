@@ -19,7 +19,9 @@ class Dashboard extends PageComponent {
       orgsCount: 0,
       usersCount: 0,
       rolesCount: 0,
-      groupsCount: 0
+      groupsCount: 0,
+      publicationsCount: 0,
+      pagesCount: 0
     }
   }
 
@@ -38,6 +40,8 @@ class Dashboard extends PageComponent {
       usersCount: body.usersCount,
       rolesCount: body.rolesCount,
       groupsCount: body.groupsCount,
+      publicationsCount: body.publicationsCount,
+      pagesCount: body.pagesCount,
       todayIs: moment().format('DD - MMMM YYYY')
     }
   }
@@ -46,7 +50,12 @@ class Dashboard extends PageComponent {
     const basicStates = super.getBasicStates()
     if (basicStates) { return basicStates }
 
-    const {orgsCount, usersCount, rolesCount, groupsCount, todayIs} = this.state
+    const {
+      usersCount,
+      publicationsCount,
+      pagesCount,
+      todayIs
+    } = this.state
 
     if (this.state.redirect) {
       return <Redirect to='/log-in' />
@@ -65,17 +74,7 @@ class Dashboard extends PageComponent {
           </div>
         </div>
         <div className='tile is-ancestor'>
-          <div className='tile is-vertical is-3'>
-            <div className='tile'>
-              <div className='tile is-parent'>
-                <article className='tile is-child has-text-centered'>
-                  <p className='title'>{orgsCount}</p>
-                  <p className='subtitle'>Organizaciones</p>
-                </article>
-              </div>
-            </div>
-          </div>
-          <div className='tile is-vertical is-3'>
+          <div className='tile is-vertical is-4-fullhd'>
             <div className='tile'>
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
@@ -85,22 +84,22 @@ class Dashboard extends PageComponent {
               </div>
             </div>
           </div>
-          <div className='tile is-vertical is-3'>
+          <div className='tile is-vertical is-4-fullhd'>
             <div className='tile'>
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
-                  <p className='title'>{rolesCount}</p>
-                  <p className='subtitle'>Roles</p>
+                  <p className='title'>{publicationsCount}</p>
+                  <p className='subtitle'>Publicaciones</p>
                 </article>
               </div>
             </div>
           </div>
-          <div className='tile is-vertical is-3'>
+          <div className='tile is-vertical is-4-fullhd'>
             <div className='tile'>
               <div className='tile is-parent'>
                 <article className='tile is-child has-text-centered'>
-                  <p className='title'>{groupsCount}</p>
-                  <p className='subtitle'>Grupos</p>
+                  <p className='title'>{pagesCount}</p>
+                  <p className='subtitle'>Páginas</p>
                 </article>
               </div>
             </div>
@@ -122,21 +121,6 @@ class Dashboard extends PageComponent {
                   <tr>
                     <td>
                       <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-sitemap' /></a>
-                        <span className='icon-list-right'>Organizaciones</span>
-                      </div>
-                    </td>
-                    <td className='quickActions-list'>
-                      <div>
-                        <div className='icon-list-items'>
-                          <Link to='/manage/organizations'><i className='fa fa-eye' /></Link>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className='icon-list'>
                         <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-user' /></a>
                         <span className='icon-list-right'>Usuarios</span>
                       </div>
@@ -152,14 +136,14 @@ class Dashboard extends PageComponent {
                   <tr>
                     <td>
                       <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-puzzle-piece' /></a>
-                        <span className='icon-list-right'>Roles</span>
+                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-book' /></a>
+                        <span className='icon-list-right'>Publicaciones</span>
                       </div>
                     </td>
                     <td className='quickActions-list'>
                       <div>
                         <div className='icon-list-items'>
-                          <Link to='/manage/roles'><i className='fa fa-eye' /></Link>
+                          <Link to='/publications'><i className='fa fa-eye' /></Link>
                         </div>
                       </div>
                     </td>
@@ -167,14 +151,14 @@ class Dashboard extends PageComponent {
                   <tr>
                     <td>
                       <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-users' /></a>
-                        <span className='icon-list-right'>Grupos</span>
+                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-file-text' /></a>
+                        <span className='icon-list-right'>Páginas</span>
                       </div>
                     </td>
                     <td className='quickActions-list'>
                       <div className='icon-list'>
                         <div className='icon-list-items'>
-                          <Link to='/manage/groups'><i className='fa fa-eye' /></Link>
+                          <Link to='/pages'><i className='fa fa-eye' /></Link>
                         </div>
                       </div>
                     </td>
