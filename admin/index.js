@@ -50,6 +50,12 @@ if (config.server.adminPrefix) {
   })
 }
 
+if (config.server.adminPrefix) {
+  app.use(config.server.adminPrefix + '/acervo', express.static('/hndmEx/acervo'))
+} else {
+  app.use('/acervo', express.static('/hndmEx/acervo'))
+}
+
 app.get('*', function (req, res) {
   res.render('index', {
     env: config.env,
