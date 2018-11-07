@@ -84,21 +84,8 @@ class PublicationDetail extends PageComponent {
 
     return (<div className='section'>
       <div className='columns'>
-        {this.getBreadcrumbs()}
-        <div className='column has-text-right'>
-          <div className='field is-grouped is-grouped-right'>
-            <div className='control'>
-              <ConfirmButton
-                title='Delete publication'
-                className='button is-danger'
-                classNameButton='button is-danger'
-                onConfirm={() => this.deleteOnClick()}
-                onSuccess={() => this.deleteSuccessHandler()}
-              >
-                Delete
-              </ConfirmButton>
-            </div>
-          </div>
+        <div className='column'>
+          {this.getBreadcrumbs()}
         </div>
       </div>
       <div className='columns'>

@@ -71,9 +71,11 @@ class PublicationList extends ListPageComponent {
       {
         'title': ' ',
         formatter: (row) => {
-          return <Link className='button' to={'/publications/' + row._id}>
-            Detalle
-          </Link>
+          return (<div className='has-text-right'>
+            <Link className='button is-small is-primary' to={'/publications/' + row._id}>
+              Detalle
+            </Link>
+          </div>)
         }
       }
     ]
@@ -83,6 +85,11 @@ class PublicationList extends ListPageComponent {
     const catalogs = this.state.catalogs.publication
 
     const data = {
+      search: {
+        label: 'Por título',
+        widget: 'TextWidget',
+        placeholder: 'Ingresa tu búsqueda'
+      },
       tipoPublicacion: {
         label: 'Por tipo de publicación',
         widget: 'SelectWidget',

@@ -16,8 +16,20 @@ module.exports = new Route({
       filters.tipoAcceso = filters.tipoAcceso === 'true'
     }
 
+    let search = {}
+    if (filters.search) {
+      search = {
+        value: String(filters.search).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+        fields: [
+          'titulo'
+        ]
+      }
+      delete filters.search
+    }
+
     const publications = await Publication.dataTables({
       limit: ctx.request.query.limit || 20,
+      search,
       skip: ctx.request.query.start,
       find: filters,
       formatter: 'toAdmin'

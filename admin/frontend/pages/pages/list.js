@@ -32,89 +32,52 @@ class PublicationList extends ListPageComponent {
         'title': 'Título',
         'property': 'titulo',
         'default': 'N/A'
+      },
+      {
+        'title': 'País',
+        'property': 'pais',
+        'default': 'N/A'
+      },
+      {
+        'title': 'Estado',
+        'property': 'estado',
+        'default': 'N/A'
+      },
+      {
+        'title': 'Ciudad',
+        'property': 'ciudad',
+        'default': 'N/A'
+      },
+      {
+        'title': 'Fecha',
+        'property': 'fecha',
+        'default': 'N/A',
+        formatter: (row) => {
+          if (row.fecha) {
+            return moment(row.fecha).format('DD/MM/YYYY')
+          }
+        }
+      },
+      {
+        'title': ' ',
+        formatter: (row) => {
+          return (<div className='has-text-right'>
+            <Link className='button is-small is-primary' to={'/pages/' + row._id}>
+              Detalle
+            </Link>
+          </div>)
+        }
       }
     ]
   }
 
   getFilters () {
-    const catalogs = this.state.catalogs.publication
-
     const data = {
-      tipoPublicacion: {
-        label: 'Por tipo de publicación',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona un tipo de publicación'
-      },
-      tipoAcceso: {
-        label: 'Por tipo de accesso',
-        widget: 'SelectWidget',
-        options: [
-          {
-            label: 'Abierto',
-            value: 'true'
-          },
-          {
-            label: 'Restringido',
-            value: 'false'
-          }
-        ],
-        placeholder: 'Selecciona un tipo de acceso'
-      },
-      pais: {
-        label: 'Por país',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona un país'
-      },
-      ciudad: {
-        label: 'Por ciudad',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una ciudad'
-      },
-      estado: {
-        label: 'Por estado',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una estado'
-      },
-      idioma: {
-        label: 'Por idioma',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona un idioma'
-      },
-      frecuencia: {
-        label: 'Por frecuencia',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una frecuencia'
+      search: {
+        label: 'Por texto',
+        widget: 'TextWidget',
+        placeholder: 'Ingresa tu búsqueda'
       }
-    }
-
-    if (catalogs.publicationType) {
-      data.tipoPublicacion.options = catalogs.publicationType.map(item => ({ label: item, value: item }))
-    }
-
-    if (catalogs.country) {
-      data.pais.options = catalogs.country.map(item => ({ label: item, value: item }))
-    }
-
-    if (catalogs.city) {
-      data.ciudad.options = catalogs.city.map(item => ({ label: item, value: item }))
-    }
-
-    if (catalogs.state) {
-      data.estado.options = catalogs.state.map(item => ({ label: item, value: item }))
-    }
-
-    if (catalogs.language) {
-      data.idioma.options = catalogs.language.map(item => ({ label: item, value: item }))
-    }
-
-    if (catalogs.frequency) {
-      data.frecuencia.options = catalogs.frequency.map(item => ({ label: item, value: item }))
     }
 
     return data
