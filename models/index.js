@@ -6,6 +6,7 @@ const Role = require('./role')
 const Group = require('./group')
 const Page = require('./page')
 const Publication = require('./publication')
+const PublicationNumber = require('./publication-number')
 const AppConfig = require('./app-config')
 // #Import
 
@@ -18,5 +19,7 @@ module.exports = {
   Group,
   Page,
   Publication,
+  PublicationNumber,
+  Number,
   AppConfig// #Exports
 }

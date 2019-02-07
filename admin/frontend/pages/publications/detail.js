@@ -55,22 +55,20 @@ class PublicationDetail extends PageComponent {
         title: 'Fecha',
         default: 'N/A',
         formatter: (row) => {
-          let { day, month, year } = row._id
+          let publishedDate = 'N/A'
 
-          let date = []
-
-          if (day) date.push(day)
-          if (month) {
-            date.push(moment(month, 'M').format('MMM'))
+          if (row.paginaFecha) {
+            publishedDate = moment(row.paginaFecha).format('YYYY-MM-DD')
           }
-          if (year) date.push(year)
 
-          return date.join('-').toUpperCase().replace('.', '')
+          return <Link to={`/pages/${row.primerPaginaDelDia_id}`}>
+            {publishedDate}
+          </Link>
         }
       },
       {
         title: '# Páginas',
-        property: 'count',
+        property: 'pageCount',
         default: 'N/A'
       }
     ]

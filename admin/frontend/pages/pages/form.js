@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import api from '~base/api'
 import MarbleForm from '~base/components/marble-form'
 
-class PublicationForm extends Component {
+class PageForm extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -94,16 +94,6 @@ class PublicationForm extends Component {
         options: [],
         allowEmpty: true,
         className: 'is-12'
-      },
-      fechaInicio: {
-        label: 'Fecha de inicio',
-        widget: 'DateWidget',
-        className: 'is-6'
-      },
-      fechaFinalizo: {
-        label: 'Fecha final',
-        widget: 'DateWidget',
-        className: 'is-6'
       }
     }
 
@@ -147,4 +137,4 @@ class PublicationForm extends Component {
   }
 }
 
-export default PublicationForm
+export default PageForm

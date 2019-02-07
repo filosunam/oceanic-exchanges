@@ -1,8 +1,8 @@
 
 const Route = require('lib/router/route')
 const QueryParams = require('lib/router/query-params')
-
-const { Page, Publication } = require('models')
+const moment = require('moment')
+const { Publication, PublicationNumber, Page } = require('models')
 
 const queryParams = new QueryParams()
 
@@ -10,37 +10,38 @@ module.exports = new Route({
   method: 'get',
   path: '/:id/numbers',
   handler: async function (ctx) {
-    const { id } = ctx.params
-    const query = ctx.request.query
-    const filters = await queryParams.toFilters(query)
+    const { id: publicationId } = ctx.params
+    const filters = await queryParams.toFilters(ctx.request.query)
 
-    const publication = await Publication.findOne({ _id: id })
+    const publication = await Publication.findOne({ _id: publicationId })
+    ctx.assert(publication, 404, 'Publication not found')
+
     filters.publicacion_id = publication._id
 
-    const pipelines = [{
-      $match: filters
-    }, {
-      $group: {
-        _id: {
-          day: {$dayOfMonth: '$fecha'},
-          month: {$month: '$fecha'},
-          year: {$year: '$fecha'}
-        },
-        pages: { $addToSet: '$$ROOT' },
-        count: {$sum: 1}
-      }
-    }, {
-      $skip: parseInt(query.start, 10) || 0
-    }, {
-      $limit: parseInt(query.limit, 10) || 20
-    }]
-
-    const numbers = await Page.aggregate(pipelines)
-    const count = await Page.aggregate(pipelines.splice(0, 2))
-
-    ctx.body = {
-      total: count.length,
-      data: numbers
+    if (filters.tipoAcceso) {
+      filters.tipoAcceso = filters.tipoAcceso === 'true'
     }
+
+    const publicationNumbers = await PublicationNumber.dataTables({
+      limit: ctx.request.query.limit || 20,
+      skip: ctx.request.query.start,
+      find: filters,
+      formatter: 'toAdmin'
+    })
+
+    publicationNumbers.data = await Promise.all(
+      publicationNumbers.data.map(async publicationNumber => {
+        publicationNumber.pageCount = await Page.count({
+          fecha: {
+            $gt: moment(publicationNumber.paginaFecha).startOf('day').toDate(),
+            $lt: moment(publicationNumber.paginaFecha).endOf('day').toDate()
+          }
+        })
+
+        return publicationNumber
+      })
+    )
+
+    ctx.body = publicationNumbers
   }
 })

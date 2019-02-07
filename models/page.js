@@ -12,6 +12,12 @@ const pageSchema = new Schema({
   pais: { type: String },
   estado: { type: String },
   ciudad: { type: String },
+  tipoPublicacion: { type: String },
+  idioma: { type: String },
+  pagina: { type: String },
+  rutaImagen: { type: String },
+  rutaXML: { type: String },
+  frecuencia: { type: String },
   fecha: { type: Date }
 }, {
   timestamps: true,
@@ -20,25 +26,41 @@ const pageSchema = new Schema({
 
 pageSchema.methods.toPublic = function () {
   return {
-    uuid: this.uuid,
+    _id: this._id,
     titulo: this.titulo,
     ocr: this.ocr,
     pais: this.pais,
     estado: this.estado,
     ciudad: this.ciudad,
-    fecha: this.fecha
+    fecha: this.fecha,
+    idioma: this.idioma,
+    pagina: this.pagina,
+    frecuencia: this.frecuencia,
+    tipoPublicacion: this.tipoPublicacion,
+    rutaImagen: this.rutaImagen,
+    rutaXML: this.rutaXML,
+    paginaAnterior_id: this.paginaAnterior_id,
+    paginaSiguiente_id: this.paginaSiguiente_id
   }
 }
 
 pageSchema.methods.toAdmin = function () {
   return {
-    uuid: this.uuid,
+    _id: this._id,
     titulo: this.titulo,
     ocr: this.ocr,
     pais: this.pais,
     estado: this.estado,
     ciudad: this.ciudad,
-    fecha: this.fecha
+    fecha: this.fecha,
+    idioma: this.idioma,
+    pagina: this.pagina,
+    frecuencia: this.frecuencia,
+    tipoPublicacion: this.tipoPublicacion,
+    rutaImagen: this.rutaImagen,
+    rutaXML: this.rutaXML,
+    paginaAnterior_id: this.paginaAnterior_id,
+    paginaSiguiente_id: this.paginaSiguiente_id
   }
 }
 
