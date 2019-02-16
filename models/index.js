@@ -7,6 +7,7 @@ const Group = require('./group')
 const Page = require('./page')
 const Publication = require('./publication')
 const PublicationNumber = require('./publication-number')
+const PublicationIssue = require('./publication-issue')
 const AppConfig = require('./app-config')
 // #Import
 
@@ -20,6 +21,7 @@ module.exports = {
   Page,
   Publication,
   PublicationNumber,
+  PublicationIssue,
   Number,
   AppConfig// #Exports
 }
