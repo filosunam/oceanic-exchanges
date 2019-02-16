@@ -8,7 +8,7 @@ const { Page, PublicationIssue } = require('models');
 const Task = require('lib/task');
 
 const task = new Task(async function(argv) {
-  const pages = Page.find({ pagina: 1 }).cursor();
+  const pages = await Page.find({ pagina: 1 });
   const count = await Page.count({ pagina: 1 });
 
   const spinner = ora(`Upserting ${count} publishing issues... 0%`).start();
@@ -17,7 +17,7 @@ const task = new Task(async function(argv) {
 
   let i = 0;
 
-  for (let page = await pages.next(); page != null; page = await pages.next()) {
+  for (let page of pages) {
     await PublicationIssue.update(
       {
         publicacion_id: page.publicacion_id,
