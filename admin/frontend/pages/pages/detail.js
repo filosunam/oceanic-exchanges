@@ -130,6 +130,7 @@ class PageDetail extends PageComponent {
               style={{
                 position: 'absolute',
                 border: '1px dotted blue',
+                background: 'rgba(0, 0, 255, 0.1)',
                 width: right - left,
                 height: bottom - top,
                 top,
@@ -164,9 +165,21 @@ class PageDetail extends PageComponent {
           <div className="column">
             <div className="card">
               <header className="card-header is-block">
-                <p className="card-header-title is-block has-text-centered">
+                <div className="card-header-title is-block has-text-centered">
                   Número {number} / Página {page.pagina}
-                </p>
+                  <div className="buttons is-pulled-right">
+                    <a
+                      href={`/admin/acervo/${page.rutaXML}`}
+                      className="button is-small is-success">
+                      XML
+                    </a>
+                    <a
+                      href={`/admin/acervo/${page.rutaImagen}`}
+                      className="button is-small is-info">
+                      TIFF
+                    </a>
+                  </div>
+                </div>
               </header>
               <header className="card-header is-block">
                 <div className="card-header-title is-block has-text-centered">
