@@ -8,8 +8,19 @@ const { Page, PublicationIssue } = require('models');
 const Task = require('lib/task');
 
 const task = new Task(async function(argv) {
-  const pages = Page.find({ pagina: 1 }).cursor({ batchSize: 1000 });
-  const count = await Page.count({ pagina: 1 });
+  const pages = Page.find({
+    pagina: 1,
+  })
+    .skip(argv.skip || 0)
+    .limit(argv.limit || 0)
+    .batchSize(5000)
+    .cursor();
+
+  const count = await Page.count({
+    pagina: 1,
+  })
+    .skip(argv.skip || 0)
+    .limit(argv.limit || 0);
 
   const spinner = ora(`Upserting ${count} publishing issues... 0%`).start();
   spinner.color = 'yellow';
@@ -17,32 +28,44 @@ const task = new Task(async function(argv) {
 
   let i = 0;
 
-  for (let page = await pages.next(); page != null; page = await pages.next()) {
-    await PublicationIssue.update(
-      {
-        publicacion_id: page.publicacion_id,
-        mes: moment(page.fecha).format('MM'),
-        dia: moment(page.fecha).format('DD'),
-        anio: moment(page.fecha).format('YYYY'),
-      },
-      {
-        $set: {
-          publicacionTitulo: page.titulo,
-          primerPaginaDelDia_id: page._id,
-          paginaFecha: page.fecha,
+  //for (let page = await pages.next(); page != null; page = await pages.next()) {
+  const updates = [];
+  await pages.eachAsync(
+    (page) => {
+      //for (let page of pages) {
+      const update = PublicationIssue.update(
+        {
+          publicacion_id: page.publicacion_id,
+          mes: moment(page.fecha).format('MM'),
+          dia: moment(page.fecha).format('DD'),
+          anio: moment(page.fecha).format('YYYY'),
         },
-      },
-      {
-        upsert: true,
-      },
-    );
+        {
+          $set: {
+            publicacionTitulo: page.titulo,
+            primerPaginaDelDia_id: page._id,
+            paginaFecha: page.fecha,
+          },
+        },
+        {
+          upsert: true,
+        },
+      ).then(() => {
+        i++;
 
-    i++;
+        const percent = (i * 100) / count;
+        spinner.text = `Upserting ${count -
+          i} publishing issues... ${percent.toFixed(2)}%`;
+      });
 
-    const percent = (i * 100) / count;
-    spinner.text = `Upserting ${count -
-      i} publishing issues... ${percent.toFixed(2)}%`;
-  }
+      updates.push(update);
+    },
+    {
+      parallel: 200,
+    },
+  );
+
+  await Promise.all(updates);
 
   spinner.text = 'Finished 100%';
   spinner.succeed();
