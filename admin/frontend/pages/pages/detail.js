@@ -168,16 +168,20 @@ class PageDetail extends PageComponent {
                 <div className="card-header-title is-block has-text-centered">
                   Número {number} / Página {page.pagina}
                   <div className="buttons is-pulled-right">
-                    <a
-                      href={`/admin/acervo/${page.rutaXML}`}
-                      className="button is-small is-success">
-                      XML
-                    </a>
-                    <a
-                      href={`/admin/acervo/${page.rutaImagen}`}
-                      className="button is-small is-info">
-                      TIFF
-                    </a>
+                    {page.rutaXML && (
+                      <a
+                        href={`/admin/acervo/${page.rutaXML}`}
+                        className="button is-small is-success">
+                        XML
+                      </a>
+                    )}
+                    {page.rutaImagen && (
+                      <a
+                        href={`/admin/acervo/${page.rutaImagen}`}
+                        className="button is-small is-info">
+                        TIFF
+                      </a>
+                    )}
                   </div>
                 </div>
               </header>
@@ -205,9 +209,11 @@ class PageDetail extends PageComponent {
                   onLoad={() => this.getOCRBoundaries()}
                 />
 
-                <div style={{ position: 'absolute', top: 0, left: 0 }}>
-                  {OCRBoundaries}
-                </div>
+                {page.rutaXML && (
+                  <div style={{ position: 'absolute', top: 0, left: 0 }}>
+                    {OCRBoundaries}
+                  </div>
+                )}
               </div>
             </div>
           </div>
