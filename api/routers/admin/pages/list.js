@@ -52,6 +52,24 @@ module.exports = new Route({
       delete filters.issue;
     }
 
+    if (filters.fromYear) {
+      filters.fecha = filters.fecha || {};
+      filters.fecha.$gt = moment(filters.fromYear, 'YYYY')
+        .startOf('year')
+        .toDate();
+
+      delete filters.fromYear;
+    }
+
+    if (filters.toYear) {
+      filters.fecha = filters.fecha || {};
+      filters.fecha.$lt = moment(filters.toYear, 'YYYY')
+        .endOf('year')
+        .toDate();
+
+      delete filters.toYear;
+    }
+
     const pages = await Page.dataTables({
       limit: ctx.request.query.limit || 20,
       skip: ctx.request.query.start,

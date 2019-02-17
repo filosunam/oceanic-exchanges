@@ -12,17 +12,30 @@ class PublicationList extends ListPageComponent {
       catalogs: {
         publication: {},
       },
+      publications: [],
     };
   }
 
   async onFirstPageEnter() {
     const catalogs = await this.loadCatalogs();
+    const publications = await this.loadPublications();
 
-    return { catalogs };
+    return {
+      catalogs,
+      publications,
+    };
   }
 
   async loadCatalogs() {
     const res = await api.get('/admin/catalogs');
+    return res.data;
+  }
+
+  async loadPublications() {
+    const res = await api.get('/admin/publications', {
+      limit: 0,
+      start: 0,
+    });
     return res.data;
   }
 
@@ -76,64 +89,43 @@ class PublicationList extends ListPageComponent {
   }
 
   getFilters() {
+    const catalogs = this.state.catalogs.publication;
+    const publications = this.state.publications;
+
     const data = {
       search: {
         label: 'Por texto',
         widget: 'TextWidget',
         placeholder: 'Ingresa tu búsqueda',
       },
-      tipoPublicacion: {
-        label: 'Por tipo de publicación',
+      publicacion_id: {
+        label: 'Por publicación',
         widget: 'SelectWidget',
         options: [],
-        placeholder: 'Selecciona un tipo de publicación',
+        placeholder: 'Selecciona una publicación',
       },
-      tipoAcceso: {
-        label: 'Por tipo de accesso',
+      fromYear: {
+        label: 'Desde el año',
         widget: 'SelectWidget',
-        options: [
-          {
-            label: 'Abierto',
-            value: 'true',
-          },
-          {
-            label: 'Restringido',
-            value: 'false',
-          },
-        ],
-        placeholder: 'Selecciona un tipo de acceso',
+        options: catalogs.initialYears || [],
+        placeholder: 'Selecciona año inicial',
       },
-      pais: {
-        label: 'Por país',
+      toYear: {
+        label: 'Hasta el año',
         widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona un país',
-      },
-      ciudad: {
-        label: 'Por ciudad',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una ciudad',
-      },
-      estado: {
-        label: 'Por estado',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una estado',
-      },
-      idioma: {
-        label: 'Por idioma',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona un idioma',
-      },
-      frecuencia: {
-        label: 'Por frecuencia',
-        widget: 'SelectWidget',
-        options: [],
-        placeholder: 'Selecciona una frecuencia',
+        options: catalogs.lastYears || [],
+        placeholder: 'Selecciona año final',
       },
     };
+
+    if (publications) {
+      data.publicacion_id.options = publications
+        .sort((a, b) => a.titulo.localeCompare(b.titulo))
+        .map((item) => ({
+          label: item.titulo,
+          value: item._id,
+        }));
+    }
 
     return data;
   }
