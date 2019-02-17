@@ -1,136 +1,134 @@
-import React from 'react'
-import Link from '~base/router/link'
-import api from '~base/api'
+import React from 'react';
+import Link from '~base/router/link';
+import api from '~base/api';
 
-import PageComponent from '~base/page-component'
-import {loggedIn} from '~base/middlewares/'
-import { BranchedPaginatedTable } from '~base/components/base-paginated-table'
-import PublicationForm from './form'
-import ConfirmButton from '~base/components/confirm-button'
-import moment from 'moment'
+import PageComponent from '~base/page-component';
+import { loggedIn } from '~base/middlewares/';
+import { BranchedPaginatedTable } from '~base/components/base-paginated-table';
+import PublicationForm from './form';
+import ConfirmButton from '~base/components/confirm-button';
+import moment from 'moment';
 
 class PublicationDetail extends PageComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       ...this.baseState,
-      publication: {}
-    }
+      publication: {},
+    };
   }
 
-  async onPageEnter () {
-    const publications = await this.loadCurrentPublication()
+  async onPageEnter() {
+    const publications = await this.loadCurrentPublication();
 
     return {
-      publications
-    }
+      publications,
+    };
   }
 
-  async loadCurrentPublication () {
-    var url = '/admin/publications/' + this.props.match.params.uuid
-    const body = await api.get(url)
+  async loadCurrentPublication() {
+    var url = '/admin/publications/' + this.props.match.params.uuid;
+    const body = await api.get(url);
 
     this.setState({
       loading: false,
       loaded: true,
-      publication: body.data
-    })
+      publication: body.data,
+    });
   }
 
-  async deleteOnClick () {
-    var url = '/admin/publications/' + this.props.match.params.uuid
-    const res = await api.del(url)
+  async deleteOnClick() {
+    var url = '/admin/publications/' + this.props.match.params.uuid;
+    const res = await api.del(url);
 
-    return res.data
+    return res.data;
   }
 
-  deleteSuccessHandler () {
-    this.props.history.push('/admin/manage/publications')
+  deleteSuccessHandler() {
+    this.props.history.push('/admin/manage/publications');
   }
 
-  getColumns () {
+  getColumns() {
     return [
       {
         title: 'Fecha',
         default: 'N/A',
         formatter: (row) => {
-          let publishedDate = 'N/A'
+          let publishedDate = 'N/A';
 
-          if (row.paginaFecha) {
-            publishedDate = moment(row.paginaFecha).format('YYYY-MM-DD')
+          if (row.fecha) {
+            publishedDate = moment(row.fecha).format('YYYY-MM-DD');
           }
 
-          return <Link to={`/pages/${row.primerPaginaDelDia_id}`}>
-            {publishedDate}
-          </Link>
-        }
+          return <Link to={`/pages/${row._id}`}>{publishedDate}</Link>;
+        },
       },
       {
         title: '# Páginas',
         property: 'pageCount',
-        default: 'N/A'
-      }
-    ]
+        default: 'N/A',
+      },
+    ];
   }
 
-  render () {
-    const basicStates = super.getBasicStates()
-    if (basicStates) { return basicStates }
+  render() {
+    const basicStates = super.getBasicStates();
+    if (basicStates) {
+      return basicStates;
+    }
 
-    const { publication } = this.state
+    const { publication } = this.state;
 
-    return (<div className='section'>
-      <div className='columns'>
-        <div className='column'>
-          {this.getBreadcrumbs()}
+    return (
+      <div className="section">
+        <div className="columns">
+          <div className="column">{this.getBreadcrumbs()}</div>
         </div>
-      </div>
-      <div className='columns'>
-        <div className='column is-12-touch is-12-desktop is-6-widescreen'>
-          <div className='card'>
-            <header className='card-header'>
-              <p className='card-header-title'>
-                Publicación
-              </p>
-            </header>
-            <div className='card-content'>
-              <div className='columns'>
-                <div className='column'>
-                  <PublicationForm
-                    label='Guardar'
-                    baseUrl='/admin/organizations'
-                    url={'/admin/organizations/' + this.props.match.params.uuid}
-                    initialState={publication}
-                    load={() => this.reload()}
-                  />
+        <div className="columns">
+          <div className="column is-12-touch is-12-desktop is-6-widescreen">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Publicación</p>
+              </header>
+              <div className="card-content">
+                <div className="columns">
+                  <div className="column">
+                    <PublicationForm
+                      label="Guardar"
+                      baseUrl="/admin/organizations"
+                      url={
+                        '/admin/organizations/' + this.props.match.params.uuid
+                      }
+                      initialState={publication}
+                      load={() => this.reload()}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="column is-12-touch is-12-desktop is-6-widescreen">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Números</p>
+              </header>
+              <div className="card-content">
+                <div className="columns">
+                  <div className="column">
+                    <BranchedPaginatedTable
+                      branchName="pages"
+                      baseUrl={`/admin/publications/${publication._id}/numbers`}
+                      columns={this.getColumns()}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='column is-12-touch is-12-desktop is-6-widescreen'>
-          <div className='card'>
-            <header className='card-header'>
-              <p className='card-header-title'>
-                Números
-              </p>
-            </header>
-            <div className='card-content'>
-              <div className='columns'>
-                <div className='column'>
-                  <BranchedPaginatedTable
-                    branchName='pages'
-                    baseUrl={`/admin/publications/${publication._id}/numbers`}
-                    columns={this.getColumns()}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>)
+    );
   }
 }
 
@@ -139,12 +137,12 @@ PublicationDetail.config({
   path: '/publications/:uuid',
   title: '<%= publication.name %> | Detalles de publicación',
   breadcrumbs: [
-    {label: 'Inicio', path: '/'},
-    {label: 'Publicaciones', path: '/publications'},
-    {label: '<%= publication.title %>'}
+    { label: 'Inicio', path: '/' },
+    { label: 'Publicaciones', path: '/publications' },
+    { label: '<%= publication.title %>' },
   ],
   exact: true,
-  validate: loggedIn
-})
+  validate: loggedIn,
+});
 
-export default PublicationDetail
+export default PublicationDetail;

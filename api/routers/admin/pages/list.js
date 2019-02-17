@@ -1,48 +1,64 @@
+const moment = require('moment');
+const Route = require('lib/router/route');
+const QueryParams = require('lib/router/query-params');
+const { promisify } = require('util');
+const { Page } = require('models');
+const _ = require('lodash');
 
-const Route = require('lib/router/route')
-const QueryParams = require('lib/router/query-params')
-const { promisify } = require('util')
-const { Page } = require('models')
-const _ = require('lodash')
+const queryParams = new QueryParams();
 
-const queryParams = new QueryParams()
-
-Page.esSearchAsync = promisify(Page.esSearch)
+Page.esSearchAsync = promisify(Page.esSearch);
 
 module.exports = new Route({
   method: 'get',
   path: '/',
-  handler: async function (ctx) {
-    const filters = await queryParams.toFilters(ctx.request.query)
+  handler: async function(ctx) {
+    const filters = await queryParams.toFilters(ctx.request.query);
 
     if (filters.search) {
-      const results = await Page.esSearchAsync({
-        from: ctx.request.query.start,
-        size: ctx.request.query.limit || 20,
-        query: {
-          query_string: {
-            query: filters.search
-          }
-        }
-      }, {
-        hydrate: true
-      })
+      const results = await Page.esSearchAsync(
+        {
+          from: ctx.request.query.start,
+          size: ctx.request.query.limit || 20,
+          query: {
+            query_string: {
+              query: filters.search,
+            },
+          },
+        },
+        {
+          hydrate: true,
+        },
+      );
 
       ctx.body = {
         total: _.get(results, 'hits.total', 0),
-        data: _.get(results, 'hits.hits', [])
-      }
+        data: _.get(results, 'hits.hits', []),
+      };
 
-      return
+      return;
+    }
+
+    if (filters.issue) {
+      filters.fecha = {
+        $gt: moment(filters.issue)
+          .startOf('day')
+          .toDate(),
+        $lt: moment(filters.issue)
+          .endOf('day')
+          .toDate(),
+      };
+
+      delete filters.issue;
     }
 
     const pages = await Page.dataTables({
       limit: ctx.request.query.limit || 20,
       skip: ctx.request.query.start,
       find: filters,
-      formatter: 'toAdmin'
-    })
+      formatter: 'toAdmin',
+    });
 
-    ctx.body = pages
-  }
-})
+    ctx.body = pages;
+  },
+});

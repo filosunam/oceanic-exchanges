@@ -16,7 +16,7 @@ const publicationIssueSchema = new Schema(
     anio: { type: Number },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   },
 );
 

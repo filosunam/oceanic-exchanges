@@ -28,11 +28,9 @@ const task = new Task(async function(argv) {
 
   let i = 0;
 
-  //for (let page = await pages.next(); page != null; page = await pages.next()) {
   const updates = [];
   await pages.eachAsync(
     (page) => {
-      //for (let page of pages) {
       const update = PublicationIssue.update(
         {
           publicacion_id: page.publicacion_id,

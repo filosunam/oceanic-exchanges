@@ -1,18 +1,18 @@
-import React from 'react'
-import moment from 'moment'
+import React from 'react';
+import moment from 'moment';
 
-import PageComponent from '~base/page-component'
-import api from '~base/api'
-import { Redirect } from 'react-router-dom'
-import Link from '~base/router/link'
+import PageComponent from '~base/page-component';
+import api from '~base/api';
+import { Redirect } from 'react-router-dom';
+import Link from '~base/router/link';
 
-import {loggedIn} from '~base/middlewares/'
+import { loggedIn } from '~base/middlewares/';
 
-moment.locale('es')
+moment.locale('es');
 
 class Dashboard extends PageComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       ...this.baseState,
@@ -21,19 +21,20 @@ class Dashboard extends PageComponent {
       rolesCount: 0,
       groupsCount: 0,
       publicationsCount: 0,
-      pagesCount: 0
-    }
+      publicationIssuesCount: 0,
+      pagesCount: 0,
+    };
   }
 
-  async onPageEnter () {
-    const data = await this.load()
+  async onPageEnter() {
+    const data = await this.load();
 
-    return data
+    return data;
   }
 
-  async load () {
-    var url = '/admin/dashboard/'
-    const body = await api.get(url)
+  async load() {
+    var url = '/admin/dashboard/';
+    const body = await api.get(url);
 
     return {
       orgsCount: body.orgsCount,
@@ -41,135 +42,165 @@ class Dashboard extends PageComponent {
       rolesCount: body.rolesCount,
       groupsCount: body.groupsCount,
       publicationsCount: body.publicationsCount,
+      publicationIssuesCount: body.publicationIssuesCount,
       pagesCount: body.pagesCount,
-      todayIs: moment().format('DD - MMMM YYYY')
-    }
+      todayIs: moment().format('DD - MMMM YYYY'),
+    };
   }
 
-  render () {
-    const basicStates = super.getBasicStates()
-    if (basicStates) { return basicStates }
+  render() {
+    const basicStates = super.getBasicStates();
+    if (basicStates) {
+      return basicStates;
+    }
 
     const {
       usersCount,
       publicationsCount,
+      publicationIssuesCount,
       pagesCount,
-      todayIs
-    } = this.state
+      todayIs,
+    } = this.state;
 
     if (this.state.redirect) {
-      return <Redirect to='/log-in' />
+      return <Redirect to="/log-in" />;
     }
 
-    return (<div className='section'>
-      <div className='Dashboard'>
-        <div className='columns'>
-          <div className='column'>
-            <h1 className='Dashboard-title'>Intercambios Oceánicos</h1>
-            <h2 className='Dashboard-subtitle'>Este es el resumen del proyecto</h2>
+    return (
+      <div className="section">
+        <div className="Dashboard">
+          <div className="columns">
+            <div className="column">
+              <h1 className="Dashboard-title">Intercambios Oceánicos</h1>
+              <h2 className="Dashboard-subtitle">
+                Este es el resumen del proyecto
+              </h2>
+            </div>
+            <div className="column Dashboard-welcome">
+              <p>Bienvenido</p>
+              <p>{todayIs}</p>
+            </div>
           </div>
-          <div className='column Dashboard-welcome'>
-            <p>Bienvenido</p>
-            <p>{todayIs}</p>
-          </div>
-        </div>
-        <div className='tile is-ancestor'>
-          <div className='tile is-vertical is-4-fullhd'>
-            <div className='tile'>
-              <div className='tile is-parent'>
-                <article className='tile is-child has-text-centered'>
-                  <p className='title'>{usersCount}</p>
-                  <p className='subtitle'>Usuarios</p>
-                </article>
+          <div className="tile is-ancestor">
+            <div className="tile is-vertical is-4-fullhd">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child has-text-centered">
+                    <p className="title">{usersCount}</p>
+                    <p className="subtitle">Usuarios</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div className="tile is-vertical is-4-fullhd">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child has-text-centered">
+                    <p className="title">{publicationsCount}</p>
+                    <p className="subtitle">Publicaciones</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div className="tile is-vertical is-4-fullhd">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child has-text-centered">
+                    <p className="title">{publicationIssuesCount}</p>
+                    <p className="subtitle">Números</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div className="tile is-vertical is-4-fullhd">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child has-text-centered">
+                    <p className="title">{pagesCount}</p>
+                    <p className="subtitle">Páginas</p>
+                  </article>
+                </div>
               </div>
             </div>
           </div>
-          <div className='tile is-vertical is-4-fullhd'>
-            <div className='tile'>
-              <div className='tile is-parent'>
-                <article className='tile is-child has-text-centered'>
-                  <p className='title'>{publicationsCount}</p>
-                  <p className='subtitle'>Publicaciones</p>
-                </article>
+          <div className="columns">
+            <div className="column is-two-fifths">
+              <div className="quickActions">
+                <table className="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Acciones rápidas</th>
+                      <th>
+                        <span>Ver</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div className="icon-list">
+                          <a className="button icon-button is-link is-rounded is-small">
+                            <i className="fa fa-user" />
+                          </a>
+                          <span className="icon-list-right">Usuarios</span>
+                        </div>
+                      </td>
+                      <td className="quickActions-list">
+                        <div>
+                          <div className="icon-list-items">
+                            <Link to="/manage/users">
+                              <i className="fa fa-eye" />
+                            </Link>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div className="icon-list">
+                          <a className="button icon-button is-link is-rounded is-small">
+                            <i className="fa fa-book" />
+                          </a>
+                          <span className="icon-list-right">Publicaciones</span>
+                        </div>
+                      </td>
+                      <td className="quickActions-list">
+                        <div>
+                          <div className="icon-list-items">
+                            <Link to="/publications">
+                              <i className="fa fa-eye" />
+                            </Link>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div className="icon-list">
+                          <a className="button icon-button is-link is-rounded is-small">
+                            <i className="fa fa-file-text" />
+                          </a>
+                          <span className="icon-list-right">Páginas</span>
+                        </div>
+                      </td>
+                      <td className="quickActions-list">
+                        <div className="icon-list">
+                          <div className="icon-list-items">
+                            <Link to="/pages">
+                              <i className="fa fa-eye" />
+                            </Link>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
-          </div>
-          <div className='tile is-vertical is-4-fullhd'>
-            <div className='tile'>
-              <div className='tile is-parent'>
-                <article className='tile is-child has-text-centered'>
-                  <p className='title'>{pagesCount}</p>
-                  <p className='subtitle'>Páginas</p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='columns'>
-          <div className='column is-two-fifths'>
-            <div className='quickActions'>
-              <table className='table is-fullwidth'>
-                <thead>
-                  <tr>
-                    <th>Acciones rápidas</th>
-                    <th>
-                      <span>Ver</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-user' /></a>
-                        <span className='icon-list-right'>Usuarios</span>
-                      </div>
-                    </td>
-                    <td className='quickActions-list'>
-                      <div>
-                        <div className='icon-list-items'>
-                          <Link to='/manage/users'><i className='fa fa-eye' /></Link>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-book' /></a>
-                        <span className='icon-list-right'>Publicaciones</span>
-                      </div>
-                    </td>
-                    <td className='quickActions-list'>
-                      <div>
-                        <div className='icon-list-items'>
-                          <Link to='/publications'><i className='fa fa-eye' /></Link>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className='icon-list'>
-                        <a className='button icon-button is-link is-rounded is-small'><i className='fa fa-file-text' /></a>
-                        <span className='icon-list-right'>Páginas</span>
-                      </div>
-                    </td>
-                    <td className='quickActions-list'>
-                      <div className='icon-list'>
-                        <div className='icon-list-items'>
-                          <Link to='/pages'><i className='fa fa-eye' /></Link>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
       </div>
-    </div>)
+    );
   }
 }
 
@@ -178,7 +209,7 @@ Dashboard.config({
   exact: true,
   title: 'Inicio',
   icon: 'dashboard',
-  validate: loggedIn
-})
+  validate: loggedIn,
+});
 
-export default Dashboard
+export default Dashboard;
