@@ -1,31 +1,43 @@
 const lov = require('lov');
 const Route = require('lib/router/route');
+const w2v = require('word2vec');
 const w2vSimilarity = require('tasks/nlp/w2v-similarity');
+const fs = require('fs');
+const path = require('path');
+
+const modelFiles = fs.readdirSync(
+  path.resolve(__dirname, '../../../tasks/nlp/models'),
+);
+const models = [];
+for (let modelFile of modelFiles) {
+  w2v.loadModel(
+    path.resolve(__dirname, `../../../tasks/nlp/models/${modelFile}`),
+    function(err, model) {
+      if (!err) {
+        models.push({
+          name: modelFile.replace('.bin', ''),
+          model,
+        });
+      }
+    },
+  );
+}
 
 module.exports = new Route({
-  method: 'post',
+  method: 'get',
   path: '/similarity',
-  validator: lov.object().keys({
-    word: lov.string().required(),
-    fromYear: lov.string().required(),
-    toYear: lov.string().required(),
-  }),
   handler: async function(ctx) {
-    const { word, fromYear, toYear } = ctx.request.body;
+    const { word } = ctx.query;
+    ctx.assert(word, 'word is required');
 
-    let similarityData = {};
+    let similarities = {};
 
-    try {
-      similarityData = await w2vSimilarity.run({
-        word,
-        model: `${fromYear}_${toYear}.bin`,
-      });
-    } catch (e) {
-      console.log('ERROR =>', e);
+    for (let { name: modelName, model } of models) {
+      similarities[modelName] = model.mostSimilar(word, 10) || [];
     }
 
     ctx.body = {
-      similarityData,
+      similarities,
     };
   },
 });
