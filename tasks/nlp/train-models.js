@@ -1,5 +1,4 @@
-// node tasks/nlp/train-models --inputPath './tmp/years' --outputPath './tmp/models'
-
+// node tasks/nlp/train-models --inputPath ./tmp/years --outputPath ./tmp/models
 require('../../config');
 
 const Task = require('lib/task');

@@ -8,6 +8,7 @@ const path = require('path');
 const modelFiles = fs.readdirSync(
   path.resolve(__dirname, '../../../tasks/nlp/models'),
 );
+
 const models = [];
 for (let modelFile of modelFiles) {
   w2v.loadModel(

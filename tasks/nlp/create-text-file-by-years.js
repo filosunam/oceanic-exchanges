@@ -1,4 +1,4 @@
-// node tasks/nlp/create-text-file-by-year --fromYear 1722 --toYear 2020
+// node tasks/nlp/create-text-file-by-years --fromYear 1722 --toYear 2020 --interval 5 --outputPath ./tmp/years
 
 require('../../config');
 require('lib/databases/mongo');
@@ -7,7 +7,7 @@ const Task = require('lib/task');
 const createTextFile = require('tasks/nlp/create-text-file');
 
 const task = new Task(async function(argv) {
-  const { fromYear, toYear } = argv;
+  const { fromYear, toYear, outputPath, interval: intervalNumber } = argv;
 
   const textFiles = [];
   const errored = [];
@@ -16,8 +16,8 @@ const task = new Task(async function(argv) {
 
   // building blocks
   for (let ii = fromYear; ii < toYear; ) {
-    intervals.push([ii, ii + 4]);
-    ii += 4;
+    intervals.push([ii, ii + (intervalNumber - 1)]);
+    ii += intervalNumber;
   }
 
   // create file inputs
@@ -28,6 +28,7 @@ const task = new Task(async function(argv) {
       const textFile = await createTextFile.run({
         fromYear: fromYearInterval,
         toYear: toYearInterval,
+        outputPath,
       });
 
       textFiles.push(textFile);
