@@ -1,163 +1,192 @@
-import React, { Component } from 'react'
-import { NavLink } from '~base/router'
-import { branch } from 'baobab-react/higher-order'
-import { withRouter } from 'react-router'
+import React, { Component } from 'react';
+import { NavLink } from '~base/router';
+import { branch } from 'baobab-react/higher-order';
+import { withRouter } from 'react-router';
 
-import api from '~base/api'
-import tree from '~core/tree'
+import api from '~base/api';
+import tree from '~core/tree';
 
 class NavBar extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       mobileMenu: 'close',
       redirect: false,
       profileDropdown: 'is-hidden',
-      dropCaret: 'fa fa-caret-down'
-    }
+      dropCaret: 'fa fa-caret-down',
+    };
 
-    this.setWrapperRef = this.setWrapperRef.bind(this)
-    this.handleClickOutside = this.handleClickOutside.bind(this)
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  componentDidMount () {
-    document.addEventListener('mousedown', this.handleClickOutside)
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('mousedown', this.handleClickOutside)
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  setWrapperRef (node) {
-    this.wrapperRef = node
+  setWrapperRef(node) {
+    this.wrapperRef = node;
   }
 
-  handleClickOutside (event) {
+  handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-caret-down' })
+      this.setState({
+        profileDropdown: 'is-hidden',
+        dropCaret: 'fa fa-caret-down',
+      });
     }
   }
 
-  toggleBtnClass () {
+  toggleBtnClass() {
     if (this.wrapperRef) {
       if (this.state.profileDropdown === 'is-hidden') {
-        this.setState({ 'profileDropdown': 'is-active', 'dropCaret': 'fa fa-caret-up' })
+        this.setState({
+          profileDropdown: 'is-active',
+          dropCaret: 'fa fa-caret-up',
+        });
       } else {
-        this.setState({ 'profileDropdown': 'is-hidden', 'dropCaret': 'fa fa-caret-down' })
+        this.setState({
+          profileDropdown: 'is-hidden',
+          dropCaret: 'fa fa-caret-down',
+        });
       }
     }
   }
 
-  async handleLogout () {
-    const {history} = this.props
+  async handleLogout() {
+    const { history } = this.props;
 
     try {
-      await api.del('/user')
+      await api.del('/user');
     } catch (err) {
-      console.log('Error removing token, logging out anyway ...')
+      console.log('Error removing token, logging out anyway ...');
     }
 
-    window.localStorage.removeItem('jwt')
-    tree.set('jwt', null)
-    tree.set('user', null)
-    tree.set('loggedIn', false)
-    tree.commit()
+    window.localStorage.removeItem('jwt');
+    tree.set('jwt', null);
+    tree.set('user', null);
+    tree.set('loggedIn', false);
+    tree.commit();
 
-    history.push('/')
+    history.push('/');
   }
 
-  handleNavbarBurgerClick () {
+  handleNavbarBurgerClick() {
     if (this.state.mobileMenu === 'open') {
-      this.setState({mobileMenu: 'close'})
+      this.setState({ mobileMenu: 'close' });
     } else {
-      this.setState({mobileMenu: 'open'})
+      this.setState({ mobileMenu: 'open' });
     }
   }
 
-  render () {
-    var navbarMenuClassName = 'navbar-menu'
+  render() {
+    var navbarMenuClassName = 'navbar-menu';
     if (this.state.mobileMenu === 'open') {
-      navbarMenuClassName = 'navbar-menu is-active'
+      navbarMenuClassName = 'navbar-menu is-active';
     }
 
-    var navButtons
-    let avatar
-    let username
+    var navButtons;
+    let avatar;
+    let username;
     if (this.props.loggedIn) {
-      avatar = 'http://1bigappstore.com/images/avt-default.jpg'
-
       if (tree.get('user')) {
-        username = tree.get('user').name
+        username = tree.get('user').name;
       }
 
-      navButtons = (<div className='navbar-end'>
-        <div className='navbar-item is-size-7 has-text-grey is-capitalized'>
-          Bienvenido { username }
-        </div>
-        <div className='is-flex is-align-center'>
-          <img className='is-rounded' src={avatar} width='40' height='45' alt='Avatar' />
-        </div>
-        <div className='dropdown is-active is-right' ref={this.setWrapperRef}>
-          <div className='dropdown-trigger is-flex'>
-            <a href='javascript:undefined' className='navbar-item' onClick={() => this.toggleBtnClass()}>
-              <span className='icon'>
-                <i className={this.state.dropCaret} />
-              </span>
-            </a>
+      navButtons = (
+        <div className="navbar-end">
+          <div className="navbar-item is-size-7 has-text-grey is-capitalized">
+            Bienvenido {username}
           </div>
-          <div className={this.state.profileDropdown}>
-            <div className='dropdown-menu' id='dropdown-menu' role='menu'>
-              <div className='dropdown-content'>
-                <NavLink className='dropdown-item' onClick={() => this.toggleBtnClass()} to='/profile'>Profile</NavLink>
-                <a className='dropdown-item' onClick={() => this.handleLogout()}>
-                  Logout
-                </a>
+          <div className="dropdown is-active is-right" ref={this.setWrapperRef}>
+            <div className="dropdown-trigger is-flex">
+              <a
+                href="javascript:undefined"
+                className="navbar-item"
+                onClick={() => this.toggleBtnClass()}>
+                <span className="icon">
+                  <i className={this.state.dropCaret} />
+                </span>
+              </a>
+            </div>
+            <div className={this.state.profileDropdown}>
+              <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                <div className="dropdown-content">
+                  <NavLink
+                    className="dropdown-item"
+                    onClick={() => this.toggleBtnClass()}
+                    to="/profile">
+                    Perfil
+                  </NavLink>
+                  <a
+                    className="dropdown-item"
+                    onClick={() => this.handleLogout()}>
+                    Cerrar sesión
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>)
+      );
     } else {
-      navButtons = (<div className='navbar-end'>
-        <div className='navbar-item'>
-          <div className='field is-grouped'>
-            <p className='control'>
-              <NavLink className='bd-tw-button button' to='/log-in'>Log in</NavLink>
-            </p>
-            <p className='control'>
-              <NavLink className='bd-tw-button button is-primary' to='/sign-up'>Sign up</NavLink>
-            </p>
+      navButtons = (
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="field is-grouped">
+              <p className="control">
+                <NavLink className="bd-tw-button button" to="/log-in">
+                  Iniciar sesión
+                </NavLink>
+              </p>
+              {/*<p className="control">
+                <NavLink
+                  className="bd-tw-button button is-primary"
+                  to="/sign-up">
+                  Sign up
+                </NavLink>
+              </p>*/}
+            </div>
           </div>
         </div>
-      </div>)
+      );
     }
 
     return (
-      <nav className='navbar'>
-        <div className='navbar-brand'>
-          <NavLink className='navbar-item' to='/'>
-            <h1>Marble Seeds</h1>
+      <nav className="navbar">
+        <div className="navbar-brand">
+          <NavLink className="navbar-item" to="/">
+            <h1>Intercambios Oceánicos</h1>
           </NavLink>
 
-          <div className='navbar-burger burger' onClick={(e) => this.handleNavbarBurgerClick(e)}>
+          <div
+            className="navbar-burger burger"
+            onClick={(e) => this.handleNavbarBurgerClick(e)}>
             <span />
             <span />
             <span />
           </div>
         </div>
         <div className={navbarMenuClassName}>
-          <div className='navbar-start'>
-            <NavLink className='navbar-item' to='/about'>
-              About
-            </NavLink>
+          <div className="navbar-start">
+            <NavLink className="navbar-item" to="/about" />
           </div>
           {navButtons}
         </div>
       </nav>
-    )
+    );
   }
 }
 
-export default withRouter(branch({
-  loggedIn: 'loggedIn'
-}, NavBar))
+export default withRouter(
+  branch(
+    {
+      loggedIn: 'loggedIn',
+    },
+    NavBar,
+  ),
+);

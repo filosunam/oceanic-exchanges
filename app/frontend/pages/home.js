@@ -1,41 +1,34 @@
-import React from 'react'
-import PageComponent from '~base/page-component'
+import React from 'react';
+import PageComponent from '~base/page-component';
 
 class Home extends PageComponent {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      ...this.baseState
-    }
+      ...this.baseState,
+    };
   }
 
-  render () {
-    const basicStates = super.getBasicStates()
-    if (basicStates) { return basicStates }
+  render() {
+    const basicStates = super.getBasicStates();
+    if (basicStates) {
+      return basicStates;
+    }
 
     return (
-      <section className='home hero is-info bsa'>
-        <div className='container'>
-          <div className='columns is-vcentered'>
-            <div className='column is-4'>
-              <p className='title'>Home</p>
-              <p className='subtitle'>Welcome to marble seeds!</p>
-            </div>
-
-            <div className='column is-8'>
-              <div className='bsa-cpc' />
-            </div>
-          </div>
+      <section className="home hero is-info bsa">
+        <div className="container">
+          <div className="columns is-vcentered" />
         </div>
       </section>
-    )
+    );
   }
 }
 
 Home.config({
   path: '/',
   title: 'Home',
-  exact: true
-})
+  exact: true,
+});
 
-export default Home
+export default Home;
