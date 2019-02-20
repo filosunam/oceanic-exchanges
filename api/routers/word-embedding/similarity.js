@@ -31,7 +31,10 @@ module.exports = new Route({
     let similarities = {};
 
     for (let { name: modelName, model } of models) {
-      similarities[modelName] = model.mostSimilar(word, 10) || [];
+      let mostSimilar = model.mostSimilar(word, 10) || [];
+      if (mostSimilar.length) {
+        similarities[modelName] = mostSimilar;
+      }
     }
 
     ctx.body = {
