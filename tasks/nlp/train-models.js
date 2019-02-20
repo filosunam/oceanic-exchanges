@@ -41,7 +41,7 @@ const task = new Task(async function(argv) {
           -size ${argv.size || 100} \
           -window ${argv.window || 5} \
           -sample ${argv.sample || 1e-3} \
-          -hs ${argv.sample || 0} \
+          -hs ${argv.hs || 0} \
           -cbow ${argv.cbow || 1} \
           -negative ${argv.negative || 5} \
           -iter ${argv.iter || 5} \
