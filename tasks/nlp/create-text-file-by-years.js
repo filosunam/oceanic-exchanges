@@ -29,6 +29,7 @@ const task = new Task(async function(argv) {
         fromYear: fromYearInterval,
         toYear: toYearInterval,
         outputPath,
+        filename: `${fromYearInterval}_${toYearInterval}`,
       });
 
       textFiles.push(textFile);

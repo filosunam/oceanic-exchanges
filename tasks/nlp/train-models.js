@@ -24,18 +24,28 @@ const task = new Task(async function(argv) {
     if (path.extname(file) === '.txt') {
       const modelFileName = file.replace('.txt', '.bin');
 
+      // shiCo suggests:
+      //  - size: 300
+      //  - window: 5
+      //  - negative: 0 (disabled, because hierarchical softmax is enabled)
+      //  - hs: 1 (enabled, then “negative” param should be disabled)
+      //  - cbow: 0 (disabled in order to using skip-grams)
+      //  - min-count: 5 (minimum word frequency)
+
       execSync(
         `
           ${word2vec} \
           -train ${inputPath}/${file} \
           -output ${outputPath}/${modelFileName} \
           -binary 1 \
-          -size 300 \
-          -window 5 \
-          -hs 1 \
-          -cbow 0 \
-          -negative 0 \
-          -min-count 5
+          -size ${argv.size || 100} \
+          -window ${argv.window || 5} \
+          -sample ${argv.sample || 1e-3} \
+          -hs ${argv.sample || 0} \
+          -cbow ${argv.cbow || 1} \
+          -negative ${argv.negative || 5} \
+          -iter ${argv.iter || 5} \
+          -min-count ${argv['min-count'] || 5}
         `,
         {
           stdio: 'inherit',

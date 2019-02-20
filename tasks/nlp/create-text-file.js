@@ -24,17 +24,9 @@ const ora = require('ora');
 const moment = require('moment');
 
 const task = new Task(async function(argv) {
-  const { limit, fromYear, toYear, outputPath } = argv;
+  const { limit, fromYear, toYear, outputPath, filename } = argv;
 
-  let filename = Date.now();
-
-  if (fromYear && toYear) {
-    filename = `${fromYear}_${toYear}`;
-  } else {
-    filename = `${fromYear || toYear}`;
-  }
-
-  const file = `${outputPath || './tmp/years'}/${filename}.txt`;
+  const file = `${outputPath || './tmp/years'}/${filename || Date.now()}.txt`;
 
   // Creating a write stream to store data
   const stream = fs.createWriteStream(file, { flags: 'w' });
