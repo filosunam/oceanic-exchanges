@@ -3,25 +3,19 @@ const Route = require('lib/router/route');
 const w2v = require('word2vec');
 const w2vSimilarity = require('tasks/nlp/w2v-similarity');
 const fs = require('fs');
-const path = require('path');
-
-const modelFiles = fs.readdirSync(
-  path.resolve(__dirname, '../../../tasks/nlp/models'),
-);
+const { modelsPath } = require('config/w2v');
+const modelFiles = fs.readdirSync(modelsPath);
 
 const models = [];
 for (let modelFile of modelFiles) {
-  w2v.loadModel(
-    path.resolve(__dirname, `../../../tasks/nlp/models/${modelFile}`),
-    function(err, model) {
-      if (!err) {
-        models.push({
-          name: modelFile.replace('.bin', ''),
-          model,
-        });
-      }
-    },
-  );
+  w2v.loadModel(`${modelsPath}/${modelFile}`, function(err, model) {
+    if (!err) {
+      models.push({
+        name: modelFile.replace('.bin', ''),
+        model,
+      });
+    }
+  });
 }
 
 module.exports = new Route({
