@@ -30,6 +30,8 @@ module.exports = new Route({
 
     let similarities = {};
 
+    models.sort((a, b) => a.name.localeCompare(b.name));
+
     for (let { name: modelName, model } of models) {
       let mostSimilar = model.mostSimilar(word, 10) || [];
       if (mostSimilar.length) {
