@@ -25,7 +25,8 @@ async function loadModels() {
   }
 }
 
-loadModels();
+// WIP with Ivan
+// loadModels();
 
 module.exports = new Route({
   method: 'get',
