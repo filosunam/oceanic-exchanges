@@ -49,6 +49,7 @@ module.exports = {
       ENV: JSON.stringify(config.env),
       PREFIX: JSON.stringify(config.server.adminPrefix),
       API_HOST: JSON.stringify(config.server.apiHost),
+      OCEX_API_HOST: JSON.stringify(config.server.ocexApiHost),
       ADMIN_HOST: JSON.stringify(config.server.adminHost),
       EMAIL_SEND: JSON.stringify(config.mailer.active),
       BASE_TITLE: JSON.stringify(config.server.adminTitle)

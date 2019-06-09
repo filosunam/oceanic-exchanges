@@ -1,81 +1,85 @@
-import React, { Component } from 'react'
-import { root } from 'baobab-react/higher-order'
+import React, { Component } from "react";
+import { root } from "baobab-react/higher-order";
 
-import api from '~base/api'
-import tree from '~core/tree'
-import ErrorPage from '~base/components/error-page'
-import Loader from '~base/components/spinner'
+import api from "~base/api";
+import tree from "~core/tree";
+import ErrorPage from "~base/components/error-page";
+import Loader from "~base/components/spinner";
 
-import NavBar from '~components/navbar'
+import NavBar from "~components/navbar";
+import { ToastContainer } from "react-toastify";
 
 class Layout extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       user: {},
       loaded: false,
       hasLoadError: false,
-      error: ''
-    }
+      error: ""
+    };
   }
 
-  async componentWillMount () {
-    const userCursor = tree.select('user')
+  async componentWillMount() {
+    const userCursor = tree.select("user");
 
-    userCursor.on('update', ({data}) => {
-      const user = data.currentData
-      this.setState({user})
-    })
+    userCursor.on("update", ({ data }) => {
+      const user = data.currentData;
+      this.setState({ user });
+    });
 
-    var me
-    if (tree.get('jwt')) {
+    var me;
+    if (tree.get("jwt")) {
       try {
-        me = await api.get('/user/me')
+        me = await api.get("/user/me");
       } catch (err) {
         if (err.status === 401) {
-          window.localStorage.removeItem('jwt')
-          tree.set('jwt', null)
-          tree.commit()
+          window.localStorage.removeItem("jwt");
+          tree.set("jwt", null);
+          tree.commit();
         }
 
         return this.setState({
           loaded: true,
           hasLoadError: true,
           error: err.message
-        })
+        });
       }
 
-      tree.set('user', me.user)
-      tree.set('loggedIn', me.loggedIn)
+      tree.set("user", me.user);
+      tree.set("loggedIn", me.loggedIn);
 
-      tree.commit()
+      tree.commit();
     }
 
-    const config = await api.get('/app-config')
-    tree.set('config', config)
+    const config = await api.get("/app-config");
+    tree.set("config", config);
 
-    tree.commit()
+    tree.commit();
 
-    this.setState({loaded: true})
+    this.setState({ loaded: true });
   }
 
-  render () {
+  render() {
     if (!this.state.loaded) {
-      return <Loader className='loader-wrapper' />
+      return <Loader className="loader-wrapper" />;
     }
 
     if (this.state.hasLoadError) {
-      return <ErrorPage message={this.state.error} />
+      return <ErrorPage message={this.state.error} />;
     }
 
-    var userData
+    var userData;
 
-    return (<div>
-      <NavBar />
-      {userData}
-      {this.props.children}
-    </div>)
+    return (
+      <div>
+        <ToastContainer />
+        <NavBar />
+        {userData}
+        {this.props.children}
+      </div>
+    );
   }
 }
 
-export default root(tree, Layout)
+export default root(tree, Layout);

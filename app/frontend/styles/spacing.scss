@@ -1,0 +1,171 @@
+$spaces: (
+  "small": 0.5rem,
+  "medium": 1rem,
+  "large": 2rem,
+  "xlarge": 4rem
+);
+
+$sides: ("top", "right", "bottom", "left");
+
+@each $space, $rem in $spaces {
+  .is-margin-#{$space} {
+    margin: #{$rem} !important;
+  }
+
+  .is-padding-#{$space} {
+    padding: #{$rem} !important;
+  }
+
+  @each $side in $sides {
+    .is-margin-#{$side}-#{$space} {
+      margin-#{$side}: #{$rem} !important;
+    }
+    .is-padding-#{$side}-#{$space} {
+      padding-#{$side}: #{$rem} !important;
+    }
+    .is-marginless-#{$side} {
+      margin-#{$side}: 0 !important;
+    }
+    .is-paddingless-#{$side} {
+      padding-#{$side}: 0 !important;
+    }
+  }
+
+  @include mobile {
+    .is-marginless-mobile {
+      margin: 0 !important;
+    }
+    .is-paddingless-mobile {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-mobile {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-mobile {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-mobile {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-mobile {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+
+  @include tablet {
+    .is-marginless-tablet {
+      margin: 0 !important;
+    }
+    .is-paddingless-tablet {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-tablet {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-tablet {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-tablet {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-tablet {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+
+  @include touch {
+    .is-marginless-touch {
+      margin: 0 !important;
+    }
+    .is-paddingless-touch {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-touch {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-touch {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-touch {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-touch {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+
+  @include desktop {
+    .is-marginless-desktop {
+      margin: 0 !important;
+    }
+    .is-paddingless-desktop {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-desktop {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-desktop {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-desktop {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-desktop {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+
+  @include widescreen {
+    .is-marginless-widescreen {
+      margin: 0 !important;
+    }
+    .is-paddingless-widescreen {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-widescreen {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-widescreen {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-widescreen {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-widescreen {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+
+  @include fullhd {
+    .is-marginless-fullhd {
+      margin: 0 !important;
+    }
+    .is-paddingless-fullhd {
+      padding: 0 !important;
+    }
+    @each $side in $sides {
+      .is-margin-#{$side}-#{$space}-fullhd {
+        margin-#{$side}: #{$rem} !important;
+      }
+      .is-padding-#{$side}-#{$space}-fullhd {
+        padding-#{$side}: #{$rem} !important;
+      }
+      .is-marginless-#{$side}-fullhd {
+        margin-#{$side}: 0 !important;
+      }
+      .is-paddingless-#{$side}-fullhd {
+        padding-#{$side}: 0 !important;
+      }
+    }
+  }
+}

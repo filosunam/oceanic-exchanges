@@ -1,6 +1,11 @@
-@import 'colors';
-@import 'buttons';
-@import '~bulma';
-@import '~bulma-tooltip';
-@import '~font-awesome/css/font-awesome.css';
-@import 'base';
+@import "colors";
+@import "buttons";
+@import "variables";
+@import "~bulma";
+@import "~bulma-tooltip";
+@import "~font-awesome/css/font-awesome.css";
+@import "base";
+@import "spacing";
+@import "~react-datepicker/dist/react-datepicker";
+@import "~react-input-range/lib/css/index.css";
+@import "app";

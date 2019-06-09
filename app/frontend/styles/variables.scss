@@ -1,0 +1,26 @@
+$primary: #3f51b5;
+
+$info: lighten($primary, 10);
+$success: #7ae281;
+$warning: #d8a224;
+$danger: #ee3d3d;
+
+$body-background-color: transparent;
+$family-primary: "Source Sans Pro", sans-serif;
+
+$navbar-padding-horizontal: 3rem;
+$navbar-item-color: $primary;
+$navbar-item-hover-color: $info;
+$navbar-item-hover-background-color: transparent;
+
+$input-hover-border-color: $primary;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow-size: 0 0 0 0.125em;
+$input-focus-box-shadow-color: rgba($primary, 0.25);
+
+$control-border-width: 1px;
+$control-height: 3rem;
+$button-border-width: $control-border-width;
+$button-padding-horizontal: 1.5rem;
+
+$notification-padding: 0.75rem 2.5rem 0.75rem 1.5rem;

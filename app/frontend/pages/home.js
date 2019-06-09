@@ -1,11 +1,12 @@
-import React from 'react';
-import PageComponent from '~base/page-component';
+import React from "react";
+import PageComponent from "~base/page-component";
+import Link from "~base/router/link";
 
 class Home extends PageComponent {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.baseState,
+      ...this.baseState
     };
   }
 
@@ -16,9 +17,11 @@ class Home extends PageComponent {
     }
 
     return (
-      <section className="home hero is-info bsa">
+      <section className="section">
         <div className="container">
-          <div className="columns is-vcentered" />
+          <div className="columns is-vcentered is-hidden">
+            <Link to="/embeddings">Embeddings</Link>
+          </div>
         </div>
       </section>
     );
@@ -26,9 +29,9 @@ class Home extends PageComponent {
 }
 
 Home.config({
-  path: '/',
-  title: 'Home',
-  exact: true,
+  path: "/",
+  title: "Home",
+  exact: true
 });
 
 export default Home;
