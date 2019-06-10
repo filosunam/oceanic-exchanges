@@ -8,7 +8,8 @@ class EmbeddingsSettings extends Component {
       perplexity: 5,
       earlyExaggeration: 1.1,
       learningRate: 1,
-      maxIterations: 100
+      maxIterations: 100,
+      distanceMetric: "euclidean"
     }
   };
 
@@ -23,7 +24,8 @@ class EmbeddingsSettings extends Component {
       perplexity,
       earlyExaggeration,
       learningRate,
-      maxIterations
+      maxIterations,
+      distanceMetric
     } = this.state;
 
     if (onChange) {
@@ -31,49 +33,55 @@ class EmbeddingsSettings extends Component {
         perplexity,
         earlyExaggeration,
         learningRate,
-        maxIterations
+        maxIterations,
+        distanceMetric
       });
     }
   }
 
   onChangePerplexity(perplexity) {
-    this.setState({
-      perplexity
-    });
-
-    this.onChangeSettings();
+    this.setState(
+      {
+        perplexity
+      },
+      this.onChangeSettings
+    );
   }
 
   onChangeEarlyExaggeration(earlyExaggeration) {
-    this.setState({
-      earlyExaggeration
-    });
-
-    this.onChangeSettings();
+    this.setState(
+      {
+        earlyExaggeration
+      },
+      this.onChangeSettings
+    );
   }
 
   onChangeLearningRate(learningRate) {
-    this.setState({
-      learningRate
-    });
-
-    this.onChangeSettings();
+    this.setState(
+      {
+        learningRate
+      },
+      this.onChangeSettings
+    );
   }
 
   onChangeMaxIterations(maxIterations) {
-    this.setState({
-      maxIterations
-    });
-
-    this.onChangeSettings();
+    this.setState(
+      {
+        maxIterations
+      },
+      this.onChangeSettings
+    );
   }
 
   onChangeDistanceMetric(distanceMetric) {
-    this.setState({
-      distanceMetric
-    });
-
-    this.onChangeSettings();
+    this.setState(
+      {
+        distanceMetric
+      },
+      this.onChangeSettings
+    );
   }
 
   render() {
@@ -81,7 +89,8 @@ class EmbeddingsSettings extends Component {
       perplexity,
       earlyExaggeration,
       learningRate,
-      maxIterations
+      maxIterations,
+      distanceMetric
     } = this.state;
 
     return (
@@ -141,21 +150,26 @@ class EmbeddingsSettings extends Component {
         <div className="column is-full is-margin-bottom-medium">
           Distance Metric
           <Form
+            formData={{ distanceMetric }}
             schema={{
               distanceMetric: {
                 widget: "SelectWidget",
                 options: [
                   {
-                    label: "Euclidean Distance"
+                    label: "Euclidean Distance",
+                    value: "euclidean"
                   },
                   {
-                    label: "Manhattan Distance"
+                    label: "Manhattan Distance",
+                    value: "manhattan"
                   },
                   {
-                    label: "Jaccard Dissimilarity"
+                    label: "Jaccard Dissimilarity",
+                    value: "jaccard"
                   },
                   {
-                    label: "Dice Dissimilarity"
+                    label: "Dice Dissimilarity",
+                    value: "dice"
                   }
                 ]
               }

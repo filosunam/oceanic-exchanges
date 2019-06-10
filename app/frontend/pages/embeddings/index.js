@@ -16,7 +16,8 @@ class Embeddings extends PageComponent {
       perplexity: 15,
       earlyExaggeration: 2.1,
       learningRate: 180,
-      maxIterations: 150
+      maxIterations: 150,
+      distanceMetric: "euclidean"
     };
 
     this.state.initialSettings = initialSettings;
@@ -112,30 +113,24 @@ class Embeddings extends PageComponent {
         perplexity,
         earlyExaggeration,
         learningRate,
-        maxIterations: nIter
+        maxIterations: nIter,
+        distanceMetric: metric
       }
     } = this.state;
 
     try {
       const series = await this.getSeries(data);
 
-      const model = new TSNE({
+      const tsneSettings = {
         dim: 2,
         perplexity,
         earlyExaggeration,
         learningRate,
         nIter,
-        metric: "euclidean"
-      });
-
-      console.log("TSNE model settings => ", {
-        dim: 2,
-        perplexity,
-        earlyExaggeration,
-        learningRate,
-        nIter,
-        metric: "euclidean"
-      });
+        metric
+      };
+      const model = new TSNE(tsneSettings);
+      console.log("TSNE model settings => ", tsneSettings);
 
       model.init({
         data: series.embeddings || [],
