@@ -54,6 +54,7 @@ class AsyncSelectWidget extends Component {
             value={value}
             isMulti={multiple}
             loadOptions={loadOptions}
+            cacheOptions
             isDisabled={disabled}
             noOptionsMessage={() => "Empieza a escribir..."}
             className={inputClassName}
