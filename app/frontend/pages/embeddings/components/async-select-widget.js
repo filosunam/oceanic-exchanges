@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Select from "react-select";
+import AsyncSelect from "react-select/lib/Async";
 import classNames from "classnames";
 
-class SelectWidget extends Component {
+class AsyncSelectWidget extends Component {
   static defaultProps = {
     placeholder: "",
     value: [],
@@ -20,11 +20,12 @@ class SelectWidget extends Component {
       error,
       label,
       required,
-      options,
+      defaultOptions,
       className,
       placeholder,
       onChange,
       multiple,
+      loadOptions,
       disabled,
       value
     } = this.props;
@@ -48,12 +49,13 @@ class SelectWidget extends Component {
           {required && <span className="required">*</span>}
         </label>
         <div className="control">
-          <Select
-            options={options}
+          <AsyncSelect
+            defaultOptions={defaultOptions}
             value={value}
             isMulti={multiple}
+            loadOptions={loadOptions}
             isDisabled={disabled}
-            noOptionsMessage={() => "No hay opciones"}
+            noOptionsMessage={() => "Empieza a escribir..."}
             className={inputClassName}
             onChange={data => this.onChange(data)}
             placeholder={placeholder}
@@ -66,4 +68,4 @@ class SelectWidget extends Component {
   }
 }
 
-export default SelectWidget;
+export default AsyncSelectWidget;

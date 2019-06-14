@@ -1,5 +1,6 @@
 import React from "react";
 import TSNE from "tsne-js";
+import { get } from "lodash";
 import api from "~base/api-ocex";
 import { error } from "~base/components/toast";
 import PageComponent from "~base/page-component";
@@ -25,6 +26,12 @@ class Embeddings extends PageComponent {
     this.state.iterations = [];
     this.state.embeddings = [];
     this.state.update = false;
+    this.state.availableYears = [];
+  }
+
+  async onFirstPageEnter() {
+    const availableYears = await this.loadYears();
+    return { availableYears };
   }
 
   componentDidUpdate() {
@@ -94,7 +101,7 @@ class Embeddings extends PageComponent {
       c.setAttribute("height", 28);
       embeddingSpace.appendChild(c);
       const ctx = c.getContext("2d");
-      ctx.font = "18px Comic Sans MS";
+      ctx.font = "18px sans-serif";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText(terms[n], c.width / 2, c.height / 2);
@@ -119,7 +126,7 @@ class Embeddings extends PageComponent {
     } = this.state;
 
     try {
-      const series = await this.getSeries(data);
+      const series = await this.loadSeries(data);
 
       const tsneSettings = {
         dim: 2,
@@ -159,12 +166,22 @@ class Embeddings extends PageComponent {
     }
   }
 
-  async getSeries(data) {
+  async loadSeries(data) {
     const { terms, year } = data;
     const formattedTerms = terms.map(({ value }) => value);
     return api.get(`/embeddings/${year.value}`, {
       q: formattedTerms.join(" ")
     });
+  }
+
+  async loadYears() {
+    const res = await api.get("/years");
+    return get(res, "years", []);
+  }
+
+  async loadTermsByYear(year) {
+    const res = await api.get(`/voca/${year}`);
+    return get(res, "vocabulary", []);
   }
 
   render() {
@@ -174,7 +191,7 @@ class Embeddings extends PageComponent {
       return basicStates;
     }
 
-    const { initialSettings } = this.state;
+    const { initialSettings, availableYears } = this.state;
 
     return (
       <section className="section content">
@@ -224,7 +241,11 @@ class Embeddings extends PageComponent {
               </div>
             </div>
             <div className="column">
-              <EmbeddingsCriteria onSubmit={data => this.onSubmit(data)} />
+              <EmbeddingsCriteria
+                availableYears={availableYears}
+                loadTermsByYear={data => this.loadTermsByYear(data)}
+                onSubmit={data => this.onSubmit(data)}
+              />
 
               <div className="embedding-space-container">
                 <div className="embedding-space" ref="embeddingSpace" />

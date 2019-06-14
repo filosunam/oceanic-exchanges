@@ -52,8 +52,8 @@ class Layout extends Component {
       tree.commit();
     }
 
-    const config = await api.get("/app-config");
-    tree.set("config", config);
+    // const config = await api.get("/app-config");
+    // tree.set("config", config);
 
     tree.commit();
 

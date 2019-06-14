@@ -2,32 +2,65 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Form from "~base/components/marble-form";
 import { error } from "~base/components/toast";
-import TermsWidget from "./terms-widget";
 import SelectWidget from "./select-widget";
+import AsyncSelectWidget from "./async-select-widget";
 
 class EmbeddingsCriteria extends Component {
+  static defaultProps = {
+    availableYears: []
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       formData: {
-        year: { label: 1864, value: 1864 },
-        terms: [
-          { label: "maximiliano", value: "maximiliano" },
-          { label: "juarez", value: "juarez" },
-          { label: "carlota", value: "carlota" }
-        ]
+        terms: [],
+        year: {}
       },
+      currentTerms: [],
       errors: {},
       errorMessage: "",
       successMessage: "",
-      loading: false
+      loading: false,
+      loadingTerms: false
     };
   }
 
   changeHandler(formData) {
+    const { formData: previousFormData } = this.state;
+    const errors = {};
+
+    if (!formData.year) {
+      errors.year = "El año es requerido";
+    }
+
+    if (!formData.terms) {
+      errors.terms = "Los términos son requeridos";
+    }
+
+    if (formData.terms && !formData.terms.length) {
+      errors.terms = "Al menos un término es requerido";
+    }
+
+    if (formData.year !== previousFormData.year) {
+      formData.terms = [];
+    }
+
     this.setState({
-      formData
+      formData,
+      errors
     });
+  }
+
+  async loadTerms(inputValue) {
+    const { formData } = this.state;
+    const { loadTermsByYear } = this.props;
+
+    const terms = await loadTermsByYear(formData.year.value);
+    const formattedTerms = terms.map(term => ({ value: term, label: term }));
+    return formattedTerms.filter(({ label }) =>
+      label.toLowerCase().includes(inputValue.toLowerCase())
+    );
   }
 
   async submitHandler() {
@@ -54,31 +87,33 @@ class EmbeddingsCriteria extends Component {
   render() {
     const {
       formData,
+      currentTerms,
       errorMessage,
       errors,
       successMessage,
       loading
     } = this.state;
-
-    const fromYear = 1800;
-    const untilYear = 1950;
-
-    let rangeYears = [];
-
-    for (let ii = untilYear; ii >= fromYear; ii--) {
-      rangeYears.push({
-        label: ii,
-        value: ii
-      });
-    }
+    const { availableYears } = this.props;
 
     const schema = {
       year: {
+        label: "Selecciona un año",
+        required: true,
+        className: "is-3 is-narrow",
         widget: SelectWidget,
-        options: rangeYears
+        options: availableYears.map(value => ({
+          label: value,
+          value
+        }))
       },
       terms: {
-        widget: TermsWidget
+        label: "Selecciona términos",
+        required: true,
+        disabled: !formData.year,
+        widget: AsyncSelectWidget,
+        multiple: true,
+        loadOptions: term => this.loadTerms(term),
+        options: []
       }
     };
 
@@ -88,6 +123,9 @@ class EmbeddingsCriteria extends Component {
         "is-loading": loading
       }
     );
+
+    const isButtonDisabled =
+      Object.keys(errors).length > 0 || !formData.terms.length;
 
     return (
       <div className="columns is-multiline is-marginless-bottom">
@@ -109,7 +147,11 @@ class EmbeddingsCriteria extends Component {
           >
             <div className="column is-narrow">
               <div className="is-padding-top-large is-hidden-mobile" />
-              <button className={buttonClassName} type="submit">
+              <button
+                disabled={isButtonDisabled}
+                className={buttonClassName}
+                type="submit"
+              >
                 Buscar
               </button>
             </div>
