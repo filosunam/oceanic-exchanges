@@ -4,8 +4,8 @@ import { get } from "lodash";
 import api from "~base/api-ocex";
 import { error } from "~base/components/toast";
 import PageComponent from "~base/page-component";
-import EmbeddingsSettings from "./components/embeddings-settings";
-import EmbeddingsCriteria from "./components/embeddings-criteria";
+import EmbeddingsSettings from "~components/embeddings/embeddings-settings";
+import EmbeddingsCriteria from "~components/embeddings/embeddings-criteria";
 import "./index.scss";
 
 class Embeddings extends PageComponent {
@@ -23,10 +23,33 @@ class Embeddings extends PageComponent {
 
     this.state.initialSettings = initialSettings;
     this.state.currentSettings = initialSettings;
+    this.state.currentCriteria = {};
     this.state.iterations = [];
     this.state.embeddings = [];
     this.state.update = false;
     this.state.availableYears = [];
+
+    this.worker = new Worker("public/js/workfile.js");
+  }
+
+  onPageEnter() {
+    this.worker.onmessage = ({ data: message }) => {
+      const { progressIterations, progressError, progressGradNorm } = this.refs;
+      switch (message.type) {
+        case "PROGRESS_ITER":
+          progressIterations.innerHTML = message.data[0] + 1;
+          progressError.innerHTML = message.data[1].toPrecision(7);
+          progressGradNorm.innerHTML = message.data[2].toPrecision(5);
+          break;
+        case "PROGRESS_DATA":
+          this.drawUpdate(message.data);
+          break;
+        case "DONE":
+          this.drawUpdate(message.data);
+          break;
+        default:
+      }
+    };
   }
 
   async onFirstPageEnter() {
@@ -34,66 +57,35 @@ class Embeddings extends PageComponent {
     return { availableYears };
   }
 
-  componentDidUpdate() {
-    const { iterations, embeddings, update } = this.state;
-    const {
-      progressIterations,
-      progressError,
-      progressGradNorm,
-      embeddingSpace
-    } = this.refs;
-
-    if (update) {
-      this.iterationTimers = this.iterationTimers || [];
-      this.iterationTimers.map(clearTimeout);
-
-      this.iterationTimers = iterations.map((iteration, index) =>
-        setTimeout(() => {
-          progressIterations.innerHTML = iteration.i + 1;
-          progressError.innerHTML = iteration.error.toPrecision(7);
-          progressGradNorm.innerHTML = iteration.gradNorm.toPrecision(5);
-        }, index * 20)
-      );
-    }
-
-    if (update) {
-      embeddingSpace.innerHTML = "";
-      this.draw();
-
-      this.embeddingTimers = this.embeddingTimers || [];
-      this.embeddingTimers.map(clearTimeout);
-
-      this.embeddingTimers = embeddings.map((embedding, index) =>
-        setTimeout(() => {
-          this.drawUpdate(embedding);
-        }, index * 20)
-      );
-
-      this.setState({ update: false });
-    }
-  }
-
   drawUpdate(embedding) {
-    const { embeddingSpace } = this.refs;
+    const embeddingSpace = document.getElementById("embeddingSpace");
     const embeddingSpaceWidth = embeddingSpace.clientWidth;
     const embeddingSpaceHeight = embeddingSpace.clientHeight;
     for (let n = 0; n < embedding.length; n++) {
       const c = document.getElementById(`sample-${n}`);
-      c.style.transform = `translateX(${((embedding[n][0] + 1) *
-        embeddingSpaceWidth -
-        120) /
-        3}px) translateY(${((embedding[n][1] + 1) * embeddingSpaceHeight) /
-        3}px)`;
+      c.setAttribute("class", "sample sample-rendered");
+      c.style.transform = `translateX(${(embedding[n][0] + 1) *
+        (embeddingSpaceWidth / 2 - 60)}px) translateY(${(embedding[n][1] + 1) *
+        (embeddingSpaceHeight / 2 - 14)}px)`;
     }
   }
 
-  draw() {
+  draw(samples = 0) {
     const {
       series: { terms, embeddings }
     } = this.state;
     const { embeddingSpace } = this.refs;
+    embeddingSpace.innerHTML = "";
 
-    for (let n = 0; n < embeddings.length; n += 1) {
+    let formattedEmbeddings = embeddings;
+    let formattedTerms = terms;
+
+    if (samples > 0) {
+      formattedEmbeddings = embeddings.slice(0, samples);
+      formattedTerms = terms.slice(0, samples);
+    }
+
+    for (let n = 0; n < formattedEmbeddings.length; n += 1) {
       const c = document.createElement("canvas");
       c.setAttribute("class", "sample");
       c.setAttribute("id", `sample-${n}`);
@@ -102,9 +94,9 @@ class Embeddings extends PageComponent {
       embeddingSpace.appendChild(c);
       const ctx = c.getContext("2d");
       ctx.font = "18px sans-serif";
-      ctx.fillStyle = "white";
       ctx.textAlign = "center";
-      ctx.fillText(terms[n], c.width / 2, c.height / 2);
+      ctx.fillStyle = "white";
+      ctx.fillText(formattedTerms[n], c.width / 2, c.height / 2);
     }
   }
 
@@ -114,8 +106,15 @@ class Embeddings extends PageComponent {
     });
   }
 
+  onChangeCriteria(currentCriteria) {
+    this.setState({
+      currentCriteria
+    });
+  }
+
   async onSubmit(data) {
     const {
+      currentCriteria: { samples },
       currentSettings: {
         perplexity,
         earlyExaggeration,
@@ -125,50 +124,52 @@ class Embeddings extends PageComponent {
       }
     } = this.state;
 
+    let series;
+
     try {
-      const series = await this.loadSeries(data);
+      series = await this.loadSeries(data);
+      if (samples.value > 0) {
+        series.embeddings = series.embeddings.slice(0, samples.value);
+        series.terms = series.terms.slice(0, samples.value);
+      }
+      this.setState({ series });
+    } catch (err) {
+      error(err.message);
+    }
+
+    if (series) {
+      this.draw(samples.value);
+
+      this.worker.postMessage({
+        type: "INPUT_DATA",
+        data: series.embeddings
+      });
 
       const tsneSettings = {
-        dim: 2,
         perplexity,
         earlyExaggeration,
         learningRate,
         nIter,
         metric
       };
-      const model = new TSNE(tsneSettings);
+
+      this.worker.postMessage({
+        type: "RUN",
+        data: tsneSettings
+      });
       console.log("TSNE model settings => ", tsneSettings);
-
-      model.init({
-        data: series.embeddings || [],
-        type: "dense"
-      });
-
-      const iterations = [];
-      model.on("progressIter", ([i, error, gradNorm]) => {
-        iterations.push({
-          i,
-          error,
-          gradNorm
-        });
-      });
-
-      const embeddings = [];
-      model.on("progressData", embedding => {
-        embeddings.push(embedding);
-      });
-
-      model.run();
-
-      this.setState({ series, iterations, embeddings, update: true });
-    } catch (err) {
-      error(err.message);
     }
   }
 
   async loadSeries(data) {
-    const { terms, year } = data;
+    const { terms, year, samples } = data;
+
+    if (samples.value > 0) {
+      return api.get(`/random_embeddings/${year.value}`);
+    }
+
     const formattedTerms = terms.map(({ value }) => value);
+
     return api.get(`/embeddings/${year.value}`, {
       q: formattedTerms.join(" ")
     });
@@ -197,13 +198,11 @@ class Embeddings extends PageComponent {
       <section className="section content">
         <div className="container is-fluid">
           <div className="columns">
-            <div className="column">
+            <div className="column is-3">
               <h2>Embeddings</h2>
-            </div>
-          </div>
 
-          <div className="columns">
-            <div className="column is-4">
+              <br />
+
               <EmbeddingsSettings
                 initialSettings={initialSettings}
                 onChange={settings => this.onChangeSettings(settings)}
@@ -244,11 +243,16 @@ class Embeddings extends PageComponent {
               <EmbeddingsCriteria
                 availableYears={availableYears}
                 loadTermsByYear={data => this.loadTermsByYear(data)}
+                onChange={data => this.onChangeCriteria(data)}
                 onSubmit={data => this.onSubmit(data)}
               />
 
               <div className="embedding-space-container">
-                <div className="embedding-space" ref="embeddingSpace" />
+                <div
+                  id="embeddingSpace"
+                  className="embedding-space"
+                  ref="embeddingSpace"
+                />
               </div>
             </div>
           </div>

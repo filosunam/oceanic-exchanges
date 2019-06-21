@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Form from "~base/components/marble-form";
 import { error } from "~base/components/toast";
-import SelectWidget from "./select-widget";
-import AsyncSelectWidget from "./async-select-widget";
+import SelectWidget from "~components/embeddings/select-widget";
+import AsyncSelectWidget from "~components/embeddings/async-select-widget";
 
 class EmbeddingsCriteria extends Component {
   static defaultProps = {
@@ -15,7 +15,11 @@ class EmbeddingsCriteria extends Component {
     this.state = {
       formData: {
         terms: [],
-        year: {}
+        year: {},
+        samples: {
+          label: "400",
+          value: 400
+        }
       },
       currentTerms: [],
       errors: {},
@@ -28,22 +32,27 @@ class EmbeddingsCriteria extends Component {
 
   changeHandler(formData) {
     const { formData: previousFormData } = this.state;
+    const { onChange } = this.props;
     const errors = {};
 
     if (!formData.year) {
       errors.year = "El año es requerido";
     }
 
-    if (!formData.terms) {
+    if (!formData.terms && formData.samples) {
       errors.terms = "Los términos son requeridos";
     }
 
-    if (formData.terms && !formData.terms.length) {
+    if (formData.terms && !formData.terms.length && !formData.samples) {
       errors.terms = "Al menos un término es requerido";
     }
 
     if (formData.year !== previousFormData.year) {
       formData.terms = [];
+    }
+
+    if (onChange) {
+      onChange(formData, errors);
     }
 
     this.setState({
@@ -87,7 +96,6 @@ class EmbeddingsCriteria extends Component {
   render() {
     const {
       formData,
-      currentTerms,
       errorMessage,
       errors,
       successMessage,
@@ -98,16 +106,34 @@ class EmbeddingsCriteria extends Component {
     const schema = {
       year: {
         label: "Selecciona un año",
+        className: "is-5",
         required: true,
-        className: "is-3 is-narrow",
         widget: SelectWidget,
         options: availableYears.map(value => ({
           label: value,
           value
         }))
       },
+      samples: {
+        label: "Selecciona samples",
+        className: "is-5",
+        required: true,
+        widget: SelectWidget,
+        options: [
+          {
+            value: 0,
+            label: "0 (seleccionar términos)"
+          }
+        ].concat(
+          [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map(value => ({
+            label: value,
+            value
+          }))
+        )
+      },
       terms: {
         label: "Selecciona términos",
+        className: "is-10",
         required: true,
         disabled: !formData.year,
         widget: AsyncSelectWidget,
@@ -117,6 +143,12 @@ class EmbeddingsCriteria extends Component {
       }
     };
 
+    if (formData.samples && formData.samples.value > 0) {
+      schema.year.className = "is-5";
+      schema.samples.className = "is-5";
+      schema.terms.className = "is-hidden";
+    }
+
     const buttonClassName = classNames(
       "button is-padding-left-large is-padding-right-large is-fullwidth is-primary",
       {
@@ -125,7 +157,9 @@ class EmbeddingsCriteria extends Component {
     );
 
     const isButtonDisabled =
-      Object.keys(errors).length > 0 || !formData.terms.length;
+      Object.keys(errors).length > 0 ||
+      !formData.year.value ||
+      (formData.samples.value === 0 && !formData.terms.length);
 
     return (
       <div className="columns is-multiline is-marginless-bottom">
@@ -138,21 +172,20 @@ class EmbeddingsCriteria extends Component {
             successMessage={successMessage}
             errorMessage={errorMessage}
             errors={errors}
-            buttonContainerClassName="column is-3"
             onSubmit={data => this.submitHandler(data)}
             onSuccess={data => this.successHandler(data)}
             onError={data => this.errorHandler(data)}
             onChange={data => this.changeHandler(data)}
             handleMessages={false}
           >
-            <div className="column is-narrow">
+            <div className="column is-2 is-narrow">
               <div className="is-padding-top-large is-hidden-mobile" />
               <button
                 disabled={isButtonDisabled}
                 className={buttonClassName}
                 type="submit"
               >
-                Buscar
+                Generar
               </button>
             </div>
           </Form>
