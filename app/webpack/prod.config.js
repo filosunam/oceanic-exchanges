@@ -47,7 +47,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(config.env),
-      PREFIX: JSON.stringify(""),
+      PREFIX: JSON.stringify(config.server.appPrefix),
       API_HOST: JSON.stringify(config.server.apiHost),
       OCEX_API_HOST: JSON.stringify(config.server.ocexApiHost),
       ADMIN_HOST: JSON.stringify(config.server.adminHost),

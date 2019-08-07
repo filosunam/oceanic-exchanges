@@ -34,15 +34,25 @@ if (config.env === "development") {
   );
 } else {
   console.log(`Starting server in ${config.env} with static assets`);
-  app.use("/assets", expressStaticGzip("app/dist"));
+  app.use(config.server.appPrefix + "/assets", expressStaticGzip("app/dist"));
 }
 
-app.use("/public", express.static(path.resolve(__dirname, "public")));
+app.use(
+  config.server.appPrefix + "/public",
+  express.static(path.resolve(__dirname, "public"))
+);
+
+if (config.server.appPrefix) {
+  app.get("/", function(req, res) {
+    res.redirect(config.server.appPrefix);
+  });
+}
 
 app.get("*", function(req, res) {
   res.render("index", {
     env: config.env,
-    title: config.server.appTitle
+    title: config.server.appTitle,
+    prefix: config.server.appPrefix
   });
 });
 

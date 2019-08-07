@@ -11,7 +11,7 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    publicPath: "/assets",
+    publicPath: config.server.appPrefix + "/assets",
     filename: "bundle.js"
   },
   module: {
@@ -44,7 +44,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       ENV: JSON.stringify(config.env),
-      PREFIX: JSON.stringify(""),
+      PREFIX: JSON.stringify(config.server.appPrefix),
       API_HOST: JSON.stringify(config.server.apiHost),
       OCEX_API_HOST: JSON.stringify(config.server.ocexApiHost),
       ADMIN_HOST: JSON.stringify(config.server.adminHost),

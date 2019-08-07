@@ -6,6 +6,7 @@ module.exports = {
 
   appPort: parseInt(process.env.APP_PORT) || 4000,
   appHost: process.env.APP_HOST || "http://localhost:4000",
+  appPrefix: process.env.APP_PREFIX || "",
   appTitle: process.env.APP_TITLE || "Marble seeds",
 
   adminPort: parseInt(process.env.ADMIN_PORT) || 5000,
