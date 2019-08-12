@@ -34,7 +34,7 @@ const AppRouter = () => {
     <Router>
       <Layout>
         <Switch>
-          {Home.asRouterItem()}
+          {/* {Home.asRouterItem()} */}
           {About.asRouterItem()}
           {EmailInviteLanding.asRouterItem()}
           {EmailResetLanding.asRouterItem()}
