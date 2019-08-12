@@ -95,6 +95,7 @@
     "uglifyjs-webpack-plugin": "^1.2.2",
     "underscore.string": "^3.3.4",
     "url-loader": "^0.5.9",
+    "vis-react": "^0.4.5",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2",

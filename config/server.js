@@ -2,7 +2,9 @@ module.exports = {
   apiPort: parseInt(process.env.API_PORT) || 3000,
   apiHost: process.env.API_HOST || "http://localhost:3000",
 
-  ocexApiHost: process.env.OCEX_API_HOST || "http://132.247.131.220:5010",
+  ocexApiHost:
+    process.env.OCEX_API_HOST ||
+    "https://intercambiosoceanicos.iib.unam.mx/embedding_api",
 
   appPort: parseInt(process.env.APP_PORT) || 4000,
   appHost: process.env.APP_HOST || "http://localhost:4000",

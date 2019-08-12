@@ -3,9 +3,10 @@ import classNames from "classnames";
 import Form from "~base/components/marble-form";
 import { error } from "~base/components/toast";
 import SelectWidget from "~components/form/select-widget";
-import AsyncSelectWidget from "~components/form/async-select-widget";
+import CreatableSelectWidget from "~components/form/creatable-select-widget";
+import InputRangeWidget from "~components/form/input-range-widget";
 
-class EmbeddingsCriteria extends Component {
+class Criteria extends Component {
   static defaultProps = {
     availableYears: []
   };
@@ -14,12 +15,10 @@ class EmbeddingsCriteria extends Component {
     super(props);
     this.state = {
       formData: {
-        terms: [],
-        year: {},
-        samples: {
-          label: "400",
-          value: 400
-        }
+        topRelated: 100,
+        maxLinks: 200,
+        maxAdaptiveTerms: 10,
+        minSimAdaptive: 0.3
       },
       currentTerms: [],
       errors: {},
@@ -104,9 +103,16 @@ class EmbeddingsCriteria extends Component {
     const { availableYears } = this.props;
 
     const schema = {
-      year: {
-        label: "Selecciona un año",
-        className: "is-5",
+      terms: {
+        label: "Agrega términos",
+        className: "is-12",
+        required: true,
+        widget: CreatableSelectWidget,
+        multiple: true
+      },
+      fromYear: {
+        label: "¿De qué año?",
+        className: "is-6",
         required: true,
         widget: SelectWidget,
         options: availableYears.map(value => ({
@@ -114,40 +120,66 @@ class EmbeddingsCriteria extends Component {
           value
         }))
       },
-      samples: {
-        label: "Selecciona samples",
-        className: "is-5",
+      toYear: {
+        label: "¿A qué año?",
+        className: "is-6",
         required: true,
         widget: SelectWidget,
-        options: [
-          {
-            value: 0,
-            label: "0 (seleccionar términos)"
-          }
-        ].concat(
-          [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map(value => ({
-            label: value,
-            value
-          }))
-        )
+        options: availableYears.map(value => ({
+          label: value,
+          value
+        }))
       },
-      terms: {
-        label: "Selecciona términos",
-        className: "is-10",
+      topRelated: {
+        label: (
+          <small className="is-padding-bottom-small is-inline-block">
+            Número máximo de posible términos por nodo
+          </small>
+        ),
+        className: "is-12 is-padding-bottom-large",
         required: true,
-        disabled: !formData.year,
-        widget: AsyncSelectWidget,
-        multiple: true,
-        loadOptions: term => this.loadTerms(term),
-        options: []
+        widget: InputRangeWidget,
+        minValue: 1,
+        maxValue: 200
+      },
+      maxLinks: {
+        label: (
+          <small className="is-padding-bottom-small is-inline-block">
+            Máximo número de links en red
+          </small>
+        ),
+        className: "is-12 is-padding-bottom-large",
+        required: true,
+        widget: InputRangeWidget,
+        minValue: 100,
+        maxValue: 1000
+      },
+      maxAdaptiveTerms: {
+        label: (
+          <small className="is-padding-bottom-small is-inline-block">
+            Número máximo de posible de nuevos términos
+          </small>
+        ),
+        className: "is-12 is-padding-bottom-large",
+        required: true,
+        widget: InputRangeWidget,
+        minValue: 1,
+        maxValue: 100
+      },
+      minSimAdaptive: {
+        label: (
+          <small className="is-padding-bottom-small is-inline-block">
+            Similitud mínima
+          </small>
+        ),
+        className: "is-12",
+        required: true,
+        widget: InputRangeWidget,
+        minValue: 0,
+        maxValue: 1,
+        step: 0.05
       }
     };
-
-    if (formData.samples && formData.samples.value > 0) {
-      schema.year.className = "is-5";
-      schema.samples.className = "is-5";
-      schema.terms.className = "is-hidden";
-    }
 
     const buttonClassName = classNames(
       "button is-padding-left-large is-padding-right-large is-fullwidth is-primary",
@@ -156,10 +188,10 @@ class EmbeddingsCriteria extends Component {
       }
     );
 
-    const isButtonDisabled =
-      Object.keys(errors).length > 0 ||
-      !formData.year.value ||
-      (formData.samples.value === 0 && !formData.terms.length);
+    const isButtonDisabled = false;
+    // Object.keys(errors).length > 0 ||
+    // !formData.year.value ||
+    // (formData.samples.value === 0 && !formData.terms.length);
 
     return (
       <div className="columns is-multiline is-marginless-bottom">
@@ -167,7 +199,6 @@ class EmbeddingsCriteria extends Component {
           <Form
             formData={{ ...formData }}
             schema={schema}
-            buttonLabel="Buscar"
             successMessage={successMessage}
             errorMessage={errorMessage}
             errors={errors}
@@ -177,14 +208,14 @@ class EmbeddingsCriteria extends Component {
             onChange={data => this.changeHandler(data)}
             handleMessages={false}
           >
-            <div className="column is-2 is-narrow">
+            <div className="column is-narrow">
               <div className="is-padding-top-large is-hidden-mobile" />
               <button
                 disabled={isButtonDisabled}
                 className={buttonClassName}
                 type="submit"
               >
-                Generar
+                Calcular
               </button>
             </div>
           </Form>
@@ -194,4 +225,4 @@ class EmbeddingsCriteria extends Component {
   }
 }
 
-export default EmbeddingsCriteria;
+export default Criteria;
