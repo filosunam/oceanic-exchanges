@@ -1,6 +1,6 @@
 import React from "react";
-import TSNE from "tsne-js";
 import { get } from "lodash";
+import env from "~base/env-variables";
 import api from "~base/api-ocex";
 import { error } from "~base/components/toast";
 import PageComponent from "~base/page-component";
@@ -29,7 +29,7 @@ class Embeddings extends PageComponent {
     this.state.update = false;
     this.state.availableYears = [];
 
-    this.worker = new Worker("public/js/workfile.js");
+    this.worker = new Worker(`${env.PREFIX}/public/js/workfile.js`);
   }
 
   onPageEnter() {
