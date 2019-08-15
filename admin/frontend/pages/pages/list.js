@@ -120,7 +120,6 @@ class PublicationList extends ListPageComponent {
 
     if (publications) {
       data.publicacion_id.options = publications
-        .sort((a, b) => a.titulo.localeCompare(b.titulo))
         .map((item) => ({
           label: item.titulo,
           value: item._id,

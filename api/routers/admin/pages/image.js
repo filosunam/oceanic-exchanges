@@ -2,6 +2,8 @@ const Route = require('lib/router/route');
 const request = require('superagent');
 const sharp = require('sharp');
 const { Page } = require('models');
+const config = require('config')
+const { server } = config;
 
 module.exports = new Route({
   method: 'get',
@@ -13,7 +15,7 @@ module.exports = new Route({
     ctx.assert(page, 404, 'Page not found');
 
     const { body: inputImageBuffer } = await request.get(
-      `http://132.247.131.220/admin/acervo/${page.rutaImagen}`,
+      `${server.adminHost}${server.adminPrefix}/acervo/${page.rutaImagen}`,
     );
     ctx.assert(inputImageBuffer, 404, 'Image not found');
 
