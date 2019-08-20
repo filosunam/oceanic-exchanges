@@ -13,12 +13,14 @@ class Criteria extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       formData: {
         topRelated: 100,
         maxLinks: 200,
         maxAdaptiveTerms: 10,
-        minSimAdaptive: 0.3
+        minSimAdaptive: 0.3,
+        terms: []
       },
       currentTerms: [],
       errors: {},
@@ -29,25 +31,37 @@ class Criteria extends Component {
     };
   }
 
+  componentWillReceiveProps (props) {
+    const { formData } = this.state;
+    const { availableYears } = props;
+    const fromYear = Math.min(...availableYears);
+    const toYear = Math.max(...availableYears);
+
+    this.setState({
+      formData: {
+        ...formData,
+        fromYear: { label: fromYear, value: fromYear },
+        toYear: { label: toYear, value: toYear },
+      }
+    }, () => {
+      this.changeHandler(this.state.formData)
+    })
+  }
+
   changeHandler(formData) {
-    const { formData: previousFormData } = this.state;
     const { onChange } = this.props;
     const errors = {};
 
-    if (!formData.year) {
-      errors.year = "El año es requerido";
+    if (!formData.toYear) {
+      errors.toYear = "El año inicial es requerido";
+    }
+    
+    if (!formData.fromYear) {
+      errors.fromYear = "El año final es requerido";
     }
 
-    if (!formData.terms && formData.samples) {
-      errors.terms = "Los términos son requeridos";
-    }
-
-    if (formData.terms && !formData.terms.length && !formData.samples) {
+    if (!formData.terms.length) {
       errors.terms = "Al menos un término es requerido";
-    }
-
-    if (formData.year !== previousFormData.year) {
-      formData.terms = [];
     }
 
     if (onChange) {
@@ -83,6 +97,9 @@ class Criteria extends Component {
   }
 
   errorHandler(err) {
+    this.setState({
+      loading: false
+    });
     error(err.message);
   }
 
@@ -101,6 +118,17 @@ class Criteria extends Component {
       loading
     } = this.state;
     const { availableYears } = this.props;
+    const fromYear = Math.min(...availableYears);
+    const toYear = Math.max(...availableYears);
+
+    const rangeYears = []
+
+    for (let ii = fromYear; ii <= toYear; ii++) {
+      rangeYears.push({
+        label: ii,
+        value: ii
+      })
+    }
 
     const schema = {
       terms: {
@@ -115,20 +143,14 @@ class Criteria extends Component {
         className: "is-6",
         required: true,
         widget: SelectWidget,
-        options: availableYears.map(value => ({
-          label: value,
-          value
-        }))
+        options: rangeYears
       },
       toYear: {
         label: "¿A qué año?",
         className: "is-6",
         required: true,
         widget: SelectWidget,
-        options: availableYears.map(value => ({
-          label: value,
-          value
-        }))
+        options: rangeYears
       },
       topRelated: {
         label: (
@@ -188,10 +210,7 @@ class Criteria extends Component {
       }
     );
 
-    const isButtonDisabled = false;
-    // Object.keys(errors).length > 0 ||
-    // !formData.year.value ||
-    // (formData.samples.value === 0 && !formData.terms.length);
+    const isButtonDisabled = Object.keys(errors).length > 0;
 
     return (
       <div className="columns is-multiline is-marginless-bottom">
