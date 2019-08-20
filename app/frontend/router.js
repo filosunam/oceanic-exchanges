@@ -16,6 +16,7 @@ import ResetPassword from "./pages/reset-password";
 import App from "./pages/app";
 
 import Embeddings from "./pages/embeddings";
+import Networks from "./pages/networks";
 
 class NotFoundPage extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ const AppRouter = () => {
           {Profile.asRouterItem()}
 
           {Embeddings.asRouterItem()}
+          {Networks.asRouterItem()}
 
           {/* Add routes here */}
 

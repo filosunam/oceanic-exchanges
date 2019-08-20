@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Form from "~base/components/marble-form";
 import { error } from "~base/components/toast";
-import SelectWidget from "~components/embeddings/select-widget";
-import AsyncSelectWidget from "~components/embeddings/async-select-widget";
+import SelectWidget from "~components/form/select-widget";
+import AsyncSelectWidget from "~components/form/async-select-widget";
 
 class EmbeddingsCriteria extends Component {
   static defaultProps = {
@@ -168,7 +168,6 @@ class EmbeddingsCriteria extends Component {
             formData={{ ...formData }}
             schema={schema}
             buttonLabel="Buscar"
-            className="columns is-multiline is-paddingless is-marginless is-variable is-fullwidth"
             successMessage={successMessage}
             errorMessage={errorMessage}
             errors={errors}
