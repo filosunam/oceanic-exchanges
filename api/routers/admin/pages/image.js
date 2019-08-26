@@ -1,6 +1,7 @@
 const Route = require('lib/router/route');
 const request = require('superagent');
 const sharp = require('sharp');
+const { Base64Encode } = require('base64-stream');
 const { Page } = require('models');
 const config = require('config')
 const { server } = config;
@@ -22,7 +23,7 @@ module.exports = new Route({
     const image = sharp().png({
       compressionLevel: 9
     });
-    ctx.body = reqImage.pipe(image);
-    ctx.set('Content-Type', 'image/png;charset=utf-8')
+    ctx.body = reqImage.pipe(image).pipe(new Base64Encode());
+    ctx.set('Content-Type', 'text/plain');
   },
 });
