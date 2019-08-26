@@ -15,8 +15,9 @@ module.exports = new Route({
     const page = await Page.findOne({ _id });
     ctx.assert(page, 404, 'Page not found');
 
+    // Using localhost to decrease latency
     const reqImage = request.get(
-      `${server.adminHost}${server.adminPrefix}/acervo/${page.rutaImagen}`
+      `http://localhost:${server.adminPort}${server.adminPrefix}/acervo/${page.rutaImagen}`
       // 'https://intercambiosoceanicos.iib.unam.mx/admin/acervo/558075be7d1e63c9fea1a3f3/1916/07/10/p0003.tif'
     );
     
