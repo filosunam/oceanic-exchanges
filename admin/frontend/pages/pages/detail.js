@@ -65,6 +65,7 @@ class PageDetail extends PageComponent {
   }
 
   async loadPage(page) {
+    const { history } = this.props;
     this.setState({
       loading: true,
       loaded: false,
@@ -72,14 +73,16 @@ class PageDetail extends PageComponent {
     const { pages } = this.state;
     const currentPage = pages.data.find((p) => p.pagina === page);
 
-    const bodyImage = await api.get(`/admin/pages/${currentPage._id}/image`);
+    history.push(`/admin/pages/${currentPage._id}`);
 
-    this.setState({
-      loading: false,
-      loaded: true,
-      page: currentPage,
-      base64Image: bodyImage.data,
-    });
+    // const bodyImage = await api.get(`/admin/pages/${currentPage._id}/image`);
+
+    // this.setState({
+    //   loading: false,
+    //   loaded: true,
+    //   page: currentPage,
+    //   base64Image: bodyImage.data,
+    // });
   }
 
   async loadPageImage() {
