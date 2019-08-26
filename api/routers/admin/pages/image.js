@@ -16,10 +16,13 @@ module.exports = new Route({
 
     const reqImage = request.get(
       `${server.adminHost}${server.adminPrefix}/acervo/${page.rutaImagen}`
+      // 'https://intercambiosoceanicos.iib.unam.mx/admin/acervo/558075be7d1e63c9fea1a3f3/1916/07/10/p0003.tif'
     );
     
-    const image = await sharp().png();
+    const image = sharp().png({
+      compressionLevel: 9
+    });
     ctx.body = reqImage.pipe(image);
-    ctx.type = 'image/png';
+    ctx.set('Content-Type', 'image/png;charset=utf-8')
   },
 });
