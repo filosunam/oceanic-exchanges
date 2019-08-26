@@ -263,7 +263,7 @@ class Embeddings extends PageComponent {
 }
 
 Embeddings.config({
-  path: "/",
+  path: "/embeddings",
   title: "Embeddings",
   exact: true
 });

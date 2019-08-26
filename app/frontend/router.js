@@ -17,6 +17,7 @@ import App from "./pages/app";
 
 import Embeddings from "./pages/embeddings";
 import Networks from "./pages/networks";
+import Streams from "./pages/streams";
 
 class NotFoundPage extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ const AppRouter = () => {
     <Router>
       <Layout>
         <Switch>
-          {/* {Home.asRouterItem()} */}
+          {Home.asRouterItem()}
           {About.asRouterItem()}
           {EmailInviteLanding.asRouterItem()}
           {EmailResetLanding.asRouterItem()}
@@ -49,6 +50,7 @@ const AppRouter = () => {
 
           {Embeddings.asRouterItem()}
           {Networks.asRouterItem()}
+          {Streams.asRouterItem()}
 
           {/* Add routes here */}
 
