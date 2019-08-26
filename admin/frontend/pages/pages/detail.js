@@ -43,7 +43,7 @@ class PageDetail extends PageComponent {
       loaded: true,
       page,
       pages,
-      base64Image,
+      base64Image
     };
   }
 
@@ -87,10 +87,7 @@ class PageDetail extends PageComponent {
 
   async loadPageImage() {
     const url = '/admin/pages/' + this.props.match.params.uuid + '/image';
-    const body = await api.get(url, {}, {
-      Accept: 'image/png'
-    });
-    return body;
+    return api.get(url);
   }
 
   getOCRBoundaries() {
@@ -219,7 +216,7 @@ class PageDetail extends PageComponent {
                 />*/}
                 <img
                   ref={this.currentImage}
-                  src={base64Image}
+                  src={`data:image/png;base64, ${base64Image}`}
                   onLoad={() => this.getOCRBoundaries()}
                 />
 
