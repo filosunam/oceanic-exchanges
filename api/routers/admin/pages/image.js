@@ -20,5 +20,6 @@ module.exports = new Route({
     
     const image = await sharp().png();
     ctx.body = reqImage.pipe(image);
+    ctx.type = 'image/png';
   },
 });
