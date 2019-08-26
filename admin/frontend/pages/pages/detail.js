@@ -88,7 +88,7 @@ class PageDetail extends PageComponent {
   async loadPageImage() {
     const url = '/admin/pages/' + this.props.match.params.uuid + '/image';
     const body = await api.get(url);
-    return body.data;
+    return body;
   }
 
   getOCRBoundaries() {

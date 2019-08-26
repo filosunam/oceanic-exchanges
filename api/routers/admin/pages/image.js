@@ -14,16 +14,11 @@ module.exports = new Route({
     const page = await Page.findOne({ _id });
     ctx.assert(page, 404, 'Page not found');
 
-    const { body: inputImageBuffer } = await request.get(
-      `${server.adminHost}${server.adminPrefix}/acervo/${page.rutaImagen}`,
+    const reqImage = request.get(
+      `${server.adminHost}${server.adminPrefix}/acervo/${page.rutaImagen}`
     );
-    ctx.assert(inputImageBuffer, 404, 'Image not found');
-
-    const image = await sharp(inputImageBuffer).png();
-    const imageBuffer = await image.toBuffer();
-
-    ctx.body = {
-      data: 'data:image/png;base64,' + imageBuffer.toString('base64'),
-    };
+    
+    const image = await sharp().png();
+    ctx.body = reqImage.pipe(image);
   },
 });
