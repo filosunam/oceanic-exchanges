@@ -87,7 +87,7 @@ class PageDetail extends PageComponent {
 
   async loadPageImage() {
     const url = '/admin/pages/' + this.props.match.params.uuid + '/image';
-    const body = await api.get(url, {
+    const body = await api.get(url, {}, {
       Accept: 'image/png'
     });
     return body;
