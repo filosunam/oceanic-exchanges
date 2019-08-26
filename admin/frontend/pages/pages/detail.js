@@ -168,6 +168,15 @@ class PageDetail extends PageComponent {
                 <div className="card-header-title is-block has-text-centered">
                   Número {number} / Página {page.pagina}
                   <div className="buttons is-pulled-right">
+                    {page.ocr && (
+                      <a
+                        download={`${page._id}.txt`}
+                        href={`data:text/plain;base64,${new Buffer(page.ocr.replace(/ *\([^)]*\) */g, ' ')).toString('base64')}`}
+                        className="button is-small is-dark"
+                      >
+                        TXT
+                      </a>
+                    )}
                     {page.rutaXML && (
                       <a
                         href={`/admin/acervo/${page.rutaXML}`}
