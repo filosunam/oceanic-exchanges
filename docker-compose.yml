@@ -8,6 +8,8 @@ services:
       dockerfile: api.dockerfile
     ports:
       - "3000:3000"
+    expose:
+      - "3000"
     networks:
       - oceanicex-network
     volumes:
@@ -22,6 +24,8 @@ services:
       dockerfile: app.dockerfile
     ports:
       - "4000:4000"
+    expose:
+      - "4000"
     networks:
       - oceanicex-network
     volumes:
@@ -34,6 +38,8 @@ services:
       dockerfile: admin.dockerfile
     ports:
       - "5000:5000"
+    expose:
+      - "5000"
     networks:
       - oceanicex-network
     volumes:
@@ -42,9 +48,9 @@ services:
     container_name: mongo
     image: mongo
     ports:
-      - "27019:27017"
+      - "27017:27017"
     expose:
-      - "27019"
+      - "27017"
     networks:
       - oceanicex-network
     volumes:
