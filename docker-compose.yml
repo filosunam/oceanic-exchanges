@@ -1,0 +1,54 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    restart: always
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - oceanicex-network
+    volumes:
+      - .:/oceanicex
+    links:
+      - mongo
+  app:
+    container_name: app
+    restart: always
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - oceanicex-network
+    volumes:
+      - .:/oceanicex
+  admin:
+    container_name: admin
+    restart: always
+    build:
+      context: .
+      dockerfile: admin.dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - oceanicex-network
+    volumes:
+      - .:/oceanicex
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27019:27017"
+    expose:
+      - "27019"
+    networks:
+      - oceanicex-network
+    volumes:
+      - /hndmEx/mongo:/data/db
+networks:
+  oceanicex-network:
+    external: true
