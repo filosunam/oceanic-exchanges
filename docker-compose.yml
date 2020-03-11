@@ -14,8 +14,6 @@ services:
       - oceanicex-network
     volumes:
       - .:/oceanicex
-    links:
-      - mongo
   app:
     container_name: app
     restart: always
