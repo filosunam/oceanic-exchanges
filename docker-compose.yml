@@ -1,6 +1,7 @@
 version: '3'
 services:
   api:
+    network_mode: host
     container_name: api
     restart: always
     build:
@@ -10,13 +11,11 @@ services:
       - "3000:3000"
     expose:
       - "3000"
-    networks:
-      - oceanicex-network
     volumes:
+      - /hndmEx/acervo:/hndmEx/acervo
       - .:/oceanicex
-    links:
-      - mongo
   app:
+    network_mode: host
     container_name: app
     restart: always
     build:
@@ -26,31 +25,29 @@ services:
       - "4000:4000"
     expose:
       - "4000"
-    networks:
-      - oceanicex-network
     volumes:
       - .:/oceanicex
   admin:
+    network_mode: host
     container_name: admin
     restart: always
     build:
       context: .
       dockerfile: admin.dockerfile
     ports:
-      - "5000:5000"
+      - "4050:4050"
     expose:
-      - "5000"
-    networks:
-      - oceanicex-network
+      - "4050"
     volumes:
+      - /hndmEx/acervo:/hndmEx/acervo
       - .:/oceanicex
   mongo:
     container_name: mongo
     image: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
     expose:
-      - "27017"
+      - "27018"
     networks:
       - oceanicex-network
     volumes:
