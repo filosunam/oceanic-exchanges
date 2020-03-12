@@ -14,6 +14,8 @@ services:
       - oceanicex-network
     volumes:
       - .:/oceanicex
+    links:
+      - mongo
   app:
     container_name: app
     restart: always
@@ -42,6 +44,17 @@ services:
       - oceanicex-network
     volumes:
       - .:/oceanicex
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    networks:
+      - oceanicex-network
+    volumes:
+      - /hndmEx/mongo:/data/db
 networks:
   oceanicex-network:
     external: true

@@ -35,11 +35,11 @@ By default, Marble Seeds have 3 different and powerfull tools to augment the use
 
 ## Configuración en Producción
 
-Si deseas configurar tu proyecto en producción, puedes utilizar Docker Compose para esto. Así, una vez que contribuyas a este proyecto y quieras liberar una funcionalidad a producción, primero asegúrate de construir los archivos estáticos corriendo lo siguiente:
+Si deseas configurar tu proyecto en producción, puedes utilizar Docker Compose para esto. Así, una vez que contribuyas a este proyecto y quieras liberar una funcionalidad a producción, primero asegúrate de construir los archivos estáticos y todo lo necesario para tu proyecto corriendo lo siguiente:
 
 
 ```bash
-make dist
+docker-compose build
 ```
 
 Una vez creados los archivos estáticos, necesitarás reiniciar los contenedores de Docker Compose con lo siguiente:
